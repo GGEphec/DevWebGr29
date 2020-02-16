@@ -1,0 +1,67 @@
+Users Stories
+	
+	En tant que dame de la garderie, je souhaite une interface simple pour encoder l'heure d'arrivée (le matin) et de départ (le soir) des enfants.
+	Pour ce faire, j'ai besoin de pouvoir sélectionner la date, en cas d'oubli, la période (matin-soir) et d'indiquer l'heure et le nom de l'enfant.
+	Afin d'avoir une vue globale, je souhaite avoir un récapitulatif des heures de la semaine.
+	Pour éviter des erreurs d'encodage, il faut que lorsque j'introduise une heure hors des plages définies, une alerte apparaisse. Cependant je dois pouvoir confirmer une heure exeptionnelle.
+	Plages définies sont : 	Matin : 6h30-7h30
+							Soir : 16h00-18h30
+							Mercredi : 13h00-18h30
+	
+	
+	
+	
+	
+	En tant que secrétaire, je souhaite pourvoir administer les éléves, les enseignants, les absences et le calendrier
+		Dans la gestion des élèves, je souhaite pouvoir voir la liste des élèves et avoir les détails d'un élèves en particulier lorsque je clique dessus.
+		Je souhaite aussi pouvoir inscrire un nouvel élève, pour ce faire je dois pouvoir encoder différentes informations
+				Nom, Prenom, Date de naissance, Classe, Parents 1 et 2
+															Nom, Prenom, Adresse, tel, mail
+		
+		Dans la gestion des enseignants, je souhaite pouvoir voir la liste des enseignants ainsi que la classe/matière qui leur est attribuée
+		Tout comme pour les élèves, je souhaite pouvoir ajouter un nouvel enseignants avec les informations suivantes
+				Nom, Prenom, Date de naissance, Nationalité, Adresse, Tel, mail, classe, matière
+				
+		Pour la gestion des absences, je souhaite pouvoir créer des absences avec la date, le motif et si un justificatif a été fourni ou non. Les absences fonctionnent tant pour les enseignants que les élèves
+		
+		Pour la gestion du calendrier, je dois pouvoir mettre les jours fériés (pas de garderie possible)  ainsi que les sorties scolaires des classes (pas de garderie pour cette classe)
+		
+		
+	En tant que parent, je recois un login et un mdp pour me connecter au site de l'école.
+		Avec ces identifiants, je peux voir le bulletin de mon enfant, ma facture detaillée de garderie et les documents utiles relatifs à l'école
+	
+
+	En tant qu'enseignants, 
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+Réunion 27/02/20 8h30
+
+Vue ou Angular
+	Vue plus simple
+	Angular plus complet et complexe
+
+
+
+
+
+NodeJS
+	Choisit pour approfondir notre connaissance de JS
+	Profiter de l'interface et des nombreux plugins
+	https://hackernoon.com/nodejs-vs-php-which-is-better-for-your-web-development-he7oa24wp?fbclid=IwAR0LN3ZA350EPIgbJCR-04HfzxEsms9_xzwlfzE8qgdSvBKLUe3wVjCfT50
+	https://www.javatpoint.com/nodejs-vs-php?fbclid=IwAR1H0_52J2-x07qeS-P433D05RJdZTPPIjy6VhEgJHak5RDYXdCNWdkE9i0
+	Language plus jeune, documentation plus récente
+	/!\ Express s'intègre bien avec NodeJS
+
+
+Wiki
+	Mettre le backlog
+	Users Stories
+	Home page, décrit le projet
+
+
+
+
+Base de données
+	DB complete pour eleves, lié a parent 1 et 2, lié a une classe
+	DB pour parents
+	DB classe avec leur nom, id
+	DB utilisateur avec leur droit
+
+

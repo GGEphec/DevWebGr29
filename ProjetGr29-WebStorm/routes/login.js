@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 
 //Lancement de la page Html
 app.get('/', function(req, res) {
-    response.sendFile(path.join(__dirname + '/login.html'));
+    res.render('login', { title: 'login' });
 });
 
 // fonction permettant de demander à l'utilisateur son mot de passe en fonction de la bdd

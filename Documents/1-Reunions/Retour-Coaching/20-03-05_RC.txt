@@ -1,0 +1,7 @@
+Retour Coaching - 05/03/2020
+----------------------------
+
+--> Question à laquelle il faut répondre pour la prochaine fois...
+
+Explication back-end : Expliquer pourquoi DB en MySQL ? Comparer avec d'autres DBs quels sont les avantages ? Quelques routes sur NodeJS + DB connectée à l'utilisateur !
+Explication front-end : Developer le front-end choisi ?

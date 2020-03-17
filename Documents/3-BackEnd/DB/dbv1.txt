@@ -1,0 +1,10 @@
+CREATE TABLE `ecole`.`parents` (
+ `idParent` INT NOT NULL COMMENT 'L\'id du parent' ,
+ `nomParent` VARCHAR NOT NULL COMMENT 'Le nom du parent' ,
+ `prenomParent` VARCHAR NOT NULL COMMENT 'Le prénom du parent' ,
+ `adresse` VARCHAR NOT NULL COMMENT 'L\'adresse du parent' ,
+ `telephonne` VARCHAR NOT NULL COMMENT 'Le téléphonne du parent' ,
+ `GSM` VARCHAR NOT NULL COMMENT 'Le GSM du parent' ,
+ `email` VARCHAR NOT NULL COMMENT 'Le mail du parent' ,
+ PRIMARY KEY (`idParent`))
+ ENGINE = InnoDB;

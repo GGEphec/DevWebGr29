@@ -3,6 +3,7 @@ var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
+var router = express.Router();
 
 var connection = mysql.createConnection({
     host     : 'localhost',
@@ -25,7 +26,7 @@ app.use(bodyParser.json());
 
 //Lancement de la page Html
 app.get('/', function(req, res) {
-    res.render('login', { title: 'login' });
+    res.sendFile(path.join(__dirname + '/login.html'));
 });
 
 // fonction permettant de demander à l'utilisateur son mot de passe en fonction de la bdd
@@ -57,3 +58,5 @@ app.get('/home', function(req, res) {
     }
     res.end();
 });
+
+module.exports = router;

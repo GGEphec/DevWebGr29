@@ -12,6 +12,7 @@ Qui lance le projet et le push sur Git? Choix IDE?
 	Webstorm Node JS Express App //Fait Nathan
 	
 		All - Regarder la strucure des fichiers
+		https://medium.com/@niclupien/comment-structurer-son-code-avec-node-js-a377d0cb0869
 	
 	
 	Chacun fait une page avec du JS derrière

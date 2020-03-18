@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var testRouter = require('./routes/test');
+var authRouter = require('./routes/auth');
 
 var app = express();
 

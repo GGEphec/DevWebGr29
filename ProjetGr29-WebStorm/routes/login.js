@@ -1,9 +1,10 @@
-var mysql = require('mysql');
 var express = require('express');
+var router = express.Router();
+var mysql = require('mysql');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
-var router = express.Router();
+
 
 var connection = mysql.createConnection({
     host     : 'localhost',
@@ -11,11 +12,7 @@ var connection = mysql.createConnection({
     password : '',
     database : 'ecole'
 });
-
-//Initialise Express
 var app = express();
-
-//Utilisation des packages via Express
 app.use(session({
     secret: 'secret',
     resave: true,
@@ -24,40 +21,40 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
-//Lancement de la page Html
-app.get('/', function(req, res) {
-    //res.sendFile(path.join(__dirname + '/login.html'));
+/* GET users listing. */
+router.get('/', function(req, res, next) {
     res.render('login');
 });
-
-// fonction permettant de demander à l'utilisateur son mot de passe en fonction de la bdd
-app.post('/auth', function(req, res) {
-    var username = req.body.username;
-    var password = req.body.password;
+/*
+app.use('/users', function(request, response) {
+    var username = request.body.username;
+    var password = request.body.password;
     if (username && password) {
-        connection.query('SELECT * FROM utilisateurs WHERE login = ? AND motDePasse = ?', [username, password], function(error, results, fields) {
+        console.log("salut");
+        connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
             if (results.length > 0) {
-                req.session.loggedin = true;
-                req.session.username = username;
-                res.redirect('/home');
+                request.session.loggedin = true;
+                request.session.username = username;
+                response.redirect('/users');
             } else {
-                res.send('Incorrect Username and/or Password!');
+                response.send('Incorrect Username and/or Password!');
             }
-            res.end();
+            response.end();
         });
     } else {
-        res.send('Please enter Username and Password!');
-        res.end();
+        response.send('Please enter Username and Password!');
+        response.end();
     }
 });
 
-app.get('/home', function(req, res) {
-    if (req.session.loggedin) {
-        res.send('Welcome back, ' + req.session.username + '!');
+app.get('/users', function(request, response) {
+    if (request.session.loggedin) {
+        response.send('Welcome back, ' + request.session.username + '!');
+        console.log('salut');
     } else {
-        res.send('Please login to view this page!');
+        response.send('Please login to view this page!');
     }
-    res.end();
+    response.end();
 });
-
+*/
 module.exports = router;

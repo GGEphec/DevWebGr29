@@ -26,7 +26,10 @@ app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/users', testRouter);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cbfd65c97a412a7c2a2a6661cd86a3a199130e19
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

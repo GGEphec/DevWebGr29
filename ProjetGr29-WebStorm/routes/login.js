@@ -3,7 +3,6 @@ var router = express.Router();
 var mysql = require('mysql');
 var session = require('express-session');
 var bodyParser = require('body-parser');
-var path = require('path');
 
 
 var connection = mysql.createConnection({
@@ -30,7 +29,6 @@ app.use('/users', function(request, response) {
     var username = request.body.username;
     var password = request.body.password;
     if (username && password) {
-        console.log("salut");
         connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
             if (results.length > 0) {
                 request.session.loggedin = true;

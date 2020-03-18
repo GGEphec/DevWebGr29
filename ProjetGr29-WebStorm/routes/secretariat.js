@@ -34,12 +34,13 @@ app.get('/', function(req, res) {
 function init() {
     connection.query('SELECT nomEleve, prenomEleve, naissance, annee FROM eleves JOIN classes ON eleves.classeId = classes.idClasse', [], function (error, results, fields) {
         if (results.length > 0) {
-            let tableau = "<table><th><tr><td>Nom</td><td>Prénom</td><td>Date de naissance</td><td>Classe</td></tr></th><tbody>";
+            let tableau = "<th><tr><td>Nom</td><td>Prénom</td><td>Date de naissance</td><td>Classe</td></tr></th><tbody>";
             for(let i=0; i<results.length; i++){
                 tableau+="<tr><td>"+results[i]['nomEleve']+"</td><td>"+results[i]['prenomEleve']+"</td><td>"+results[i]['naissance']+"</td><td>"+results[i]['annee']+"</td></tr>";
             }
-            tableau+="</tbody></table>";
-            res.write(tableau);
+            tableau+="</tbody>";
+            //res.write(tableau);
+            document.getElementById('tableEleve').innerHTML=tableau;
         }
         else {
             res.send('Erreur lors de l\'accès à la base de donnée');

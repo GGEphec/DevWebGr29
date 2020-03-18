@@ -1,7 +1,9 @@
 Coahing 200318
 
 API
-
+	toutes les requetes SQL via API a part plutot que direct dans JS
+	Faire les tests sur API
+	Documentation API
 
 
 Services qui fonctionnent
@@ -34,7 +36,7 @@ Base de donnée
 	
 	
 
-	
+Mettre sur wiki les préparation coaching
 
 
 

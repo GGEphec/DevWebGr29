@@ -5,6 +5,7 @@ var app = express();
 
 
 router.get('/eleves', function(req, res, next) {
+<<<<<<< HEAD
     var user_id = req.param('id');
     var user_name = req.param('name');
     if (typeof user_id != null) {
@@ -21,6 +22,29 @@ router.get('/eleves', function(req, res, next) {
     }
 });
 
+=======
+    res.locals.connection.query('SELECT * from eleves', function (error, results, fields) {
+        if (error) throw error;
+        res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+    });
+});
+
+router.get('/parents', function (req, res, next) {
+    res.locals.connection.query('SELECT * FROM parents', function (error, results, fields) {
+        if(error) throw error;
+        res.send(JSON.stringify(({"status": 200, "error":null, "reponse":results})))
+    });
+    
+});
+
+router.post('/eleve', function (req, res, next) {
+   res.locals.connection.query(,function(error, results, fields){
+       if(error) throw error;
+
+   });
+});
+
+>>>>>>> e8f588f9091cc33e7762560f1dfe9932eab92c19
 
 
 module.exports = router;

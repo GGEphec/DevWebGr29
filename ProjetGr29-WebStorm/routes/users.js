@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-<<<<<<< HEAD
 var http = require('http');
 var url = require('url');
 var querystring = require('querystring');
@@ -16,8 +15,6 @@ var connection = mysql.createConnection({
   database : 'ecole'
 });
 
-=======
->>>>>>> 3c03ca73db52568df8a73f0cf2600aed0fb609c6
 var app = express();
 
 

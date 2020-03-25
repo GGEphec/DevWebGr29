@@ -36,7 +36,7 @@ html
   body
     .login-form
       h1 Plateforme de Connexion
-      form(action='users', method='USE')
-        input(type='text', name='username', placeholder='Utilisateur', required='')
-        input(type='password', name='password', placeholder='Mot de passe', required='')
+      form(action='users', method='get')
+        input(type='text', name='username',id='username', placeholder='Utilisateur', required='')
+        input(type='password', name='password', id ='password', placeholder='Mot de passe', required='')
         input(type='submit')

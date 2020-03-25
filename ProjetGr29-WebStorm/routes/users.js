@@ -6,6 +6,7 @@ var querystring = require('querystring');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
+var mysql = require('mysql');
 
 var connection = mysql.createConnection({
   host     : 'localhost',

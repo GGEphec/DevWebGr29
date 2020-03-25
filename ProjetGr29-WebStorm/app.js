@@ -6,9 +6,9 @@ var logger = require('morgan');
 var mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/usersold');
+var usersRouter = require('./routes/api');
 var loginRouter = require('./routes/login');
-var apiRouter = require('./routes/users');
+var apiRouter = require('./routes/api');
 
 var app = express();
 
@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 app.use('/login', loginRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
 app.use('/api/v1/users', usersRouter);
 
 

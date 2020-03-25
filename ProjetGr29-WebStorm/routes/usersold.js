@@ -1,52 +1,24 @@
 var express = require('express');
 var router = express.Router();
-var http = require('http');
 var url = require('url');
 var querystring = require('querystring');
-var session = require('express-session');
-var bodyParser = require('body-parser');
-var path = require('path');
-var mysql = require('mysql');
-
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'ecole'
-});
-
-var app = express();
-app.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
-}));
-app.use(bodyParser.urlencoded({extended : true}));
-app.use(bodyParser.json());
-
+/* GET home page. */
 router.get('/', function(req, res, next) {
   var page = url.parse(req.url).pathname;
   var param = querystring.parse(url.parse(req.url).query);
-
- if(param.username == 'root') {
-   res.render('users', {title: 'Users', nom : param.username});
- }
-});
-
-/*app.post('/auth', function(request, response) {
   var username = param.username;
   var password = param.password;
   if (username && password) {
-    connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
-      if (results.length > 0) {
-        request.session.loggedin = true;
-        request.session.username = username;
+    res.locals.connection.query('SELECT * FROM utilisateurs WHERE login = ? and motDePasse = ?', [username,password], function(error, results, fields) {
+      if (results.length> 0) {
+        res.render('index',{ title: username });
       } else {
-        response.send('Incorrect Username and/or Password!');
+        res.send('Incorrect Username and/or Password!');
       }
-      response.end();
+      res.end();
     });
+
   }
-});*/
+});
 
 module.exports = router;

@@ -6,9 +6,9 @@ var logger = require('morgan');
 var mysql = require('mysql');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/api');
 var loginRouter = require('./routes/login');
-var apiRouter = require('./routes/users');
+var apiRouter = require('./routes/api');
 
 var app = express();
 

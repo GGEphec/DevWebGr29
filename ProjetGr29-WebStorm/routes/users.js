@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+<<<<<<< HEAD
 var http = require('http');
 var url = require('url');
 var querystring = require('querystring');
@@ -15,38 +16,17 @@ var connection = mysql.createConnection({
   database : 'ecole'
 });
 
+=======
+>>>>>>> 3c03ca73db52568df8a73f0cf2600aed0fb609c6
 var app = express();
-app.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
-}));
-app.use(bodyParser.urlencoded({extended : true}));
-app.use(bodyParser.json());
+
+
 
 router.get('/', function(req, res, next) {
-  var page = url.parse(req.url).pathname;
-  var param = querystring.parse(url.parse(req.url).query);
-
- if(param.username == 'root') {
-   res.render('users', {title: 'Users', nom : param.username});
- }
-});
-
-/*app.post('/auth', function(request, response) {
-  var username = param.username;
-  var password = param.password;
-  if (username && password) {
-    connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
-      if (results.length > 0) {
-        request.session.loggedin = true;
-        request.session.username = username;
-      } else {
-        response.send('Incorrect Username and/or Password!');
-      }
-      response.end();
+    res.locals.connection.query('SELECT * from eleves', function (error, results, fields) {
+        if (error) throw error;
+        res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
     });
-  }
-});*/
+});
 
 module.exports = router;

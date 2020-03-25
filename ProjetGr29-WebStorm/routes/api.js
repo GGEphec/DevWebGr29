@@ -16,7 +16,7 @@ router.get('/eleves', function(req, res, next) {
         });
     }
     else if (typeof eleve_name != "undefined") {
-        if (eleve_surname != "undefined") {
+        if (typeof eleve_surname != "undefined") {
             res.locals.connection.query('select * from eleves where nomEleve like ? AND prenomEleve LIKE ?' ,[eleve_name+'%', eleve_surname+'%'], function (error, results, fields) {
                 if (error) throw error;
                 res.send(JSON.stringify({"status": 200, "error": null, "response": results}));

@@ -4,7 +4,7 @@ var app = express();
 
 
 
-app.get('/', function(req, res, next) {
+router.get('/', function(req, res, next) {
     res.locals.connection.query('SELECT * from eleves', function (error, results, fields) {
         if (error) throw error;
         res.send(JSON.stringify({"status": 200, "error": null, "response": results}));

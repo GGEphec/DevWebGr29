@@ -30,7 +30,7 @@ router.get('/parents', function (req, res, next) {
 });
 
 router.post('/eleve', function (req, res, next) {
-   res.locals.connection.query(,function(error, results, fields){
+   res.locals.connection.query('',function(error, results, fields){
        if(error) throw error;
 
    });

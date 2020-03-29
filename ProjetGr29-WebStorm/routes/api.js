@@ -37,12 +37,22 @@ router.get('/eleves', function(req, res, next) {
 });
 
 router.get('/parents', function (req, res, next) {
-    res.locals.connection.query('SELECT * FROM parents', function (error, results, fields) {
-        if(error) throw error;
-        res.send(JSON.stringify(({"status": 200, "error":null, "reponse":results})))
-    });
-    
+    var parent_id=req.query.id;
+    if(typeof parent_id !="undefined"){
+        res.locals.connection.query('SELECT * FROM parents WHERE idParent =?',[parent_id], function (error, results, fields) {
+            if (error) throw error;
+            res.send(JSON.stringify(({"status": 200, "error": null, "reponse": results})))
+        });
+    }
+    else
+    {
+        res.locals.connection.query('SELECT * FROM parents', function (error, results, fields) {
+            if (error) throw error;
+            res.send(JSON.stringify(({"status": 200, "error": null, "reponse": results})))
+        });
+    }
 });
+
 
 router.post('/eleve', function (req, res, next) {
    res.locals.connection.query('',function(error, results, fields){

@@ -1,0 +1,12 @@
+Retour Coaching - 25/03/2020
+----------------------------
+
+-> Ajouter les liens des tableaux Trello, les liens vers les réunions d'équipe et les liens vers les documents
+de retour des coachings.
+
+-> Ajouter sur Trello les UserStories et pas juste les tâches à faire par chacun.
+
+-> Avancer sur le Front-End
+
+-> Gestion du temps (Clockify?) ou modifier l'excel pour le rendre plus compréhensible.
+Dans l'Excel, faire la distinction entre le back-end et le front-end

@@ -1,33 +1,34 @@
-Coahing 200318
+Retour Coaching - 18/03/2020
+----------------------------
 
-API
+-> API
 	toutes les requetes SQL via API a part plutot que direct dans JS
 	Faire les tests sur API
 	Documentation API
 
 
-Services qui fonctionnent
+-> Services qui fonctionnent
 	login va chercher sur la base de donnée pour vérifier les utilisateurs
 	secretariat va chercher la liste des eleves mais ne l'integre pas encore à l'HTML
 	
 	
-Tests
+-> Tests
 	/
 	
 	
-Adresses
+-> Adresses
 	/login : tout le monde pour se logger
 	/secretariat : que les secretaires, direction après s'être loggé
 	/garderie : que la garderie
 	/eleves?id=XXX : direction, secretaire, garderie après s'être loggé
 	
-Page de loggin
+-> Page de loggin
 	champs fonctionnels
 	recupère les infos dans les champs
 	mais vérification avec la base de donnée  non fonctionnel
 	passe d'office à la prochaine page
 	
-Base de donnée
+-> Base de donnée
 	En local avec PHPmyAdmin
 	mise en place sur vps en mysql possible mais repporté a apres les tests
 	structure de la base de donnée correspond à l'attende du client

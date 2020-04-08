@@ -11,7 +11,10 @@ router.get('/', function(req, res, next) {
   if (username && password) {
     res.locals.connection.query('SELECT * FROM utilisateurs WHERE login = ? and motDePasse = ?', [username,password], function(error, results, fields) {
       if (results.length> 0) {
-        res.render('index',{ title: username });
+        //res.render('index',{ title: username });
+        if(username=="secretariat01" || username=="secretariat02"){ //TO-DO faire sous forme de switch case
+          res.redirect('/secretariat');
+        }
       } else {
         res.send('Incorrect Username and/or Password!');
       }

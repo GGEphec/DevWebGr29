@@ -25,7 +25,8 @@ request(option2, function(err, res2, data) {
 //Lancement de la page Html
 router.get('/', function(req, res) {
     res.render('secretariat', {eleveListe:test});
-    console.log(test[1]['nom']);
+    //TO-DO refresh auto de la liste
+    //console.log(test[1]['nom']);
 });
 
 

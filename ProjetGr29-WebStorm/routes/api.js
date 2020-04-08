@@ -12,27 +12,31 @@ router.get('/eleves', function(req, res, next) {
     if (typeof eleve_id != "undefined") {
         res.locals.connection.query('SELECT * from eleves WHERE idEleve = ?' ,[eleve_id], function (error, results, fields) {
             if (error) throw error;
-            res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+            //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+            res.send({"status": 200, "error": null, "response": results});
         });
     }
     else if (typeof eleve_name != "undefined") {
         if (typeof eleve_surname != "undefined") {
             res.locals.connection.query('select * from eleves where nomEleve like ? AND prenomEleve LIKE ?' ,[eleve_name+'%', eleve_surname+'%'], function (error, results, fields) {
                 if (error) throw error;
-                res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+                //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+                res.send({"status": 200, "error": null, "response": results});
             });
         }
         else {
             res.locals.connection.query('select * from eleves where nomEleve like ?', [eleve_name + '%'], function (error, results, fields) {
                 if (error) throw error;
-                res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+                //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+                res.send({"status": 200, "error": null, "response": results});
             });
         }
     }
     else {
         res.locals.connection.query('SELECT * from eleves', function (error, results, fields) {
             if (error) throw error;
-            res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+            //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+            res.send({"status": 200, "error": null, "response": results});
         })};
 });
 
@@ -41,14 +45,16 @@ router.get('/parents', function (req, res, next) {
     if(typeof parent_id !="undefined"){
         res.locals.connection.query('SELECT * FROM parents WHERE idParent =?',[parent_id], function (error, results, fields) {
             if (error) throw error;
-            res.send(JSON.stringify(({"status": 200, "error": null, "reponse": results})))
+            //res.send(JSON.stringify(({"status": 200, "error": null, "reponse": results})));
+            res.send({"status": 200, "error": null, "reponse": results});
         });
     }
     else
     {
         res.locals.connection.query('SELECT * FROM parents', function (error, results, fields) {
             if (error) throw error;
-            res.send(JSON.stringify(({"status": 200, "error": null, "reponse": results})))
+            //res.send(JSON.stringify({"status": 200, "error": null, "reponse": results}));
+            res.send({"status": 200, "error": null, "reponse": results});
         });
     }
 });

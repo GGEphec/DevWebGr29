@@ -1,12 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const https = require('https');
-const options = {
-    hostname: 'localhost',
-    port: 3000,
-    path: '/api/v1/eleves',
-    method: 'GET'
-};
+const request = require('request');
+
 
 
 //Lancement de la page Html
@@ -14,36 +9,23 @@ router.get('/', function(req, res) {
     res.render('secretariat');
 });
 
-//Charge les eleves
-function init() {
-    const req = https.request(options, res => {
-        console.log('statusCode: ${res.statusCode}');
-    });
 
+//Charge les eleves 3  FONCTIONNE
+const option2 = {
+    url: 'http://localhost:3000/api/v1/eleves',
+    method: 'GET'
+};
 
+request(option2, function(err, res, data){
+    let json = JSON.parse(data);
+    console.log(json['response']);
 
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
 
 
 
 
 module.exports = router;
-
 
 
 

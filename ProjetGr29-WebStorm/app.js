@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql');
+var Vue = require('vue');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/usersold');
@@ -45,7 +46,7 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/api/v1/', apiRouter);
 app.use('/users', usersRouter);
-app.use('/garderie', garderieRouter);
+//app.use('/garderie', garderieRouter);
 app.use('/secretariat', secretariatRouter);
 
 

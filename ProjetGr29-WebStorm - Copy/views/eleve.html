@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        form{
+            line-height: 1.5em;
+        }
+        div{
+            border: solid black 2px;
+            padding: 2px;
+            margin: 2px;
+        }
+        #parent1{
+            float: left;
+            width: 48.5%;
+            overflow: hidden;
+        }
+        #parent2{
+            float: right;
+            width: 48.5%;
+            overflow: hidden;
+        }
+
+        p{
+           text-align: center;
+        }
+        button{
+            display: block;
+            margin: auto;
+        }
+    </style>
+    <title>#eleve</title>
+</head>
+<body>
+    <form id="formEleve">
+
+        Nom : <input type="text" name="formEleveNom"><br>
+        Prénom : <input type="text" name="formElevePrenom"><br>
+        Date de naissance : <input type="text" name="formEleveDOB"><br>
+        Nationalité : <input type="text" name="formEleveNationalite"><br>
+    </form>
+
+    <div id="parent1">
+        <form id="formParent1">
+            <p>Parent 1</p>
+            <hr color="black">
+            Nom : <input type="text" name="formParent1Nom"><br>
+            Prénom : <input type="text" name="formParent1Prenom"><br>
+            Adresse : <input type="text" name="formParent1Adresse"><br>
+            Téléphonne : <input type="text" name="formParent1Telephone"><br>
+            GSM : <input type="text" name="formParent1GSM"><br>
+            Email : <input type="text" name="formParent1Email"><br>
+            <button onclick="saveParent()">Enregistrer</button>
+        </form>
+    </div>
+
+    <div id="parent2">
+        <form id="formParent2">
+            <p>Parent 2</p>
+            <hr color="black">
+            Nom : <input type="text" name="formParent2Nom"><br>
+            Prénom : <input type="text" name="formParent2Prenom"><br>
+            Adresse : <input type="text" name="formParent2Adresse"><br>
+            Téléphonne : <input type="text" name="formParent2Telephone"><br>
+            GSM : <input type="text" name="formParent2GSM"><br>
+            Email : <input type="text" name="formParent2Email"><br>
+            <button onclick="saveParent()">Enregistrer</button>
+        </form>
+    </div>
+
+
+
+</body>
+</html>

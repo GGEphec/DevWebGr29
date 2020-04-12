@@ -46,7 +46,7 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/api/v1/', apiRouter);
 app.use('/users', usersRouter);
-//app.use('/garderie', garderieRouter);
+app.use('/garderie', garderieRouter);
 app.use('/secretariat', secretariatRouter);
 
 

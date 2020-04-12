@@ -8,7 +8,7 @@ router.get('/eleves', function(req, res, next) {
     var eleve_id = req.query.id;
     var eleve_name = req.query.name;
     var eleve_surname = req.query.surname;
-    console.log(eleve_name);
+    //console.log(eleve_name);
     if (typeof eleve_id != "undefined") {
         res.locals.connection.query('SELECT * from eleves WHERE idEleve = ?' ,[eleve_id], function (error, results, fields) {
             if (error) throw error;
@@ -40,6 +40,16 @@ router.get('/eleves', function(req, res, next) {
         })};
 });
 
+router.get('/garderie', function (req, res, next) {
+    res.locals.connection.query('SELECT idGarderie, nomEleve, prenomEleve, annee, date, heure, outIn FROM garderie NATURAL JOIN eleves NATURAL JOIN classes', function (error, results, fields) {
+        if (error) throw error;
+        //res.send(JSON.stringify(({"status": 200, "error": null, "reponse": results})));
+        res.send({"status": 200, "error": null, "reponse": results});
+    });
+});
+
+
+
 router.get('/parents', function (req, res, next) {
     var parent_id=req.query.id;
     if(typeof parent_id !="undefined"){
@@ -66,6 +76,5 @@ router.post('/eleve', function (req, res, next) {
 
    });
 });
-
 
 module.exports = router;

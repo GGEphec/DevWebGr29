@@ -2,6 +2,31 @@ doctype html
 head
     meta(charset='UTF-8')
     title Garderie
-
-p Test garderie
-
+    style.
+        table, th, td {
+            border:solid black 2px;
+            padding: 2px;
+            border-collapse: collapse;
+        }
+        th {
+            background-color: #00B7FF;
+        }
+table#tableGarderie
+    tr
+        th idGarderie
+        th Nom
+        th Prénom
+        th Annee
+        th Date
+        th Heure
+        th In/Out
+    tbody
+        each line in garderieTableau
+            tr
+                td= line.idGarderie
+                td= line.nomEleve
+                td= line.prenomEleve
+                td= line.annee
+                td= line.dateG
+                td= line.heure
+                td= line.outIn

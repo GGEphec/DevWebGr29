@@ -46,7 +46,7 @@ router.get('/parents', function (req, res, next) {
         res.locals.connection.query('SELECT * FROM parents WHERE idParent =?',[parent_id], function (error, results, fields) {
             if (error) throw error;
             //res.send(JSON.stringify(({"status": 200, "error": null, "reponse": results})));
-            res.send({"status": 200, "error": null, "reponse": results});
+            res.send({"status": 200, "error": null, "response": results});
         });
     }
     else
@@ -54,7 +54,7 @@ router.get('/parents', function (req, res, next) {
         res.locals.connection.query('SELECT * FROM parents', function (error, results, fields) {
             if (error) throw error;
             //res.send(JSON.stringify({"status": 200, "error": null, "reponse": results}));
-            res.send({"status": 200, "error": null, "reponse": results});
+            res.send({"status": 200, "error": null, "response": results});
         });
     }
 });
@@ -66,6 +66,14 @@ router.post('/eleve', function (req, res, next) {
 
    });
 });
+
+router.get('/garderie', function (req, res, next) {
+    res.locals.connection.query('SELECT idGarderie, nomEleve, prenomEleve, annee, date, heure, outIn FROM garderie NATURAL JOIN eleves NATURAL JOIN classes', function (error, results, fields) {
+        if (error) throw error;
+        res.send({"status": 200, "error": null, "response": results});
+    });
+});
+
 
 
 module.exports = router;

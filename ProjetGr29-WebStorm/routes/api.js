@@ -8,7 +8,7 @@ router.get('/eleves', function(req, res, next) {
     var eleve_id = req.query.id;
     var eleve_name = req.query.name;
     var eleve_surname = req.query.surname;
-    console.log(eleve_name);
+    //console.log(eleve_name);
     if (typeof eleve_id != "undefined") {
         res.locals.connection.query('SELECT * from eleves WHERE idEleve = ?' ,[eleve_id], function (error, results, fields) {
             if (error) throw error;

@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var Vue = require('vue');
 const request = require('request');
 
 
@@ -18,10 +17,13 @@ router.get('/', function(req, res) {
         var json = JSON.parse(data)['response'];
         for (let i = 0; i < json.length; i++) {
             test.push({
+                id: json[i]['idEleve'],
                 nom: json[i]['nomEleve'],
                 prenom: json[i]['prenomEleve'],
                 naissance: json[i]['naissance'],
-                classe: json[i]['idClasse']
+                classe: json[i]['annee'],
+                p1: json[i]['parent1Id'],
+                p2: json[i]['parent2Id']
             });
         }
         res.render('secretariat', {eleveListe:test});

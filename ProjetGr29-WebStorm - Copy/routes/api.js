@@ -4,6 +4,18 @@ var app = express();
 
 
 //
+router.get('/login', function(req,res,next){
+    var page = url.parse(req.url).pathname;
+    var param = querystring.parse(url.parse(req.url).query);
+    var username = param.username;
+    var password = param.password;
+    if (username && password) {
+        res.locals.connection.query('SELECT * FROM utilisateurs WHERE login = ? and motDePasse = ?', [username,password], function(error, results, fields) {
+            if (error) throw error;
+            res.send({"status": 200, "error": null, "response": results});
+        });
+    }
+});
 router.get('/eleves', function(req, res, next) {
     var eleve_id = req.query.id;
     var eleve_name = req.query.name;

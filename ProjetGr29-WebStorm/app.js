@@ -12,6 +12,7 @@ var loginRouter = require('./routes/login');
 var apiRouter = require('./routes/api');
 var garderieRouter = require('./routes/garderie');
 var secretariatRouter = require('./routes/secretariat');
+var eleveRouter = require('./routes/eleve');
 
 var app = express();
 
@@ -48,6 +49,7 @@ app.use('/api/v1/', apiRouter);
 app.use('/users', usersRouter);
 app.use('/garderie', garderieRouter);
 app.use('/secretariat', secretariatRouter);
+app.use('/eleve', eleveRouter);
 
 
 // catch 404 and forward to error handler

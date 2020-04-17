@@ -11,6 +11,15 @@ head
         th {
             background-color: #00B7FF;
         }
+    script(src='../routes/garderie.js')
+
+form(method='POST' action='/garderie')
+    input#idGarderie.form-control(type='text', placeholder='Garderie ID' name='idGarderie')
+    input#idEleve.form-control(type='text', placeholder='Student ID' name='idEleve')
+    input#date.form-control(type='text', placeholder='Date' name='date')
+    input#heure.form-control(type='text', placeholder='Hour' name='heure')
+    input#outin.form-control(type='text', placeholder='In/Out' name='outin')
+
 table#tableGarderie
     tr
         th idGarderie

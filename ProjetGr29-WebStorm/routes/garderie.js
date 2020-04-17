@@ -7,6 +7,7 @@ const options = {
    method : 'GET'
 }
 
+// Affichage le tableau de la garderie
 var gard=[];
 request(options, function(err, res2, data) {
    var json = JSON.parse(data)['response'];
@@ -22,7 +23,6 @@ request(options, function(err, res2, data) {
       });
    }
 });
-
 
 router.get('/', function(req, res){
    res.render('garderie', {garderieTableau:gard});

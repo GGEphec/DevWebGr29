@@ -1,0 +1,98 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    style.
+        form{
+            line-height: 1.5em;
+        }
+        div{
+            border: solid black 2px;
+            padding: 2px;
+            margin: 2px;
+        }
+        #parent1{
+            float: left;
+            width: 48.5%;
+            overflow: hidden;
+        }
+        #parent2{
+            float: right;
+            width: 48.5%;
+            overflow: hidden;
+        }
+        p{
+            text-align: center;
+        }
+        button{
+            display: block;
+            margin: auto;
+        }
+        input {
+            width: fit-content;
+            margin: 2px;
+            margin-left: 5px;
+            padding-left: 4px;
+        }
+title #eleve
+form#formEleve
+    | Nom :
+    input(type='text' name='formEleveNom' value=donneeEleve[2][0]['nomEleve'])
+    br
+    |         Prénom :
+    input(type='text' name='formElevePrenom' value=donneeEleve[2][0]['prenomEleve'])
+    br
+    |         Date de naissance :
+    input(type='text' name='formEleveDOB' value=donneeEleve[2][0]['naissance'])
+    br
+    |         Nationalité :
+    input(type='text' name='formEleveNationalite' value=donneeEleve[2][0]['nationalite'])
+    br
+    | Classe :
+    input(type='text' name='formEleveClasse' value=donneeEleve[2][0]['annee'])
+    br
+#parent1
+    form#formParent1
+        p Parent 1
+        hr(color='black')
+        |             Nom :
+        input(type='text' name='formParent1Nom' value=donneeEleve[1][0]['nomParent'])
+        br
+        |             Prénom :
+        input(type='text' name='formParent1Prenom' value=donneeEleve[1][0]['prenomParent'])
+        br
+        |             Adresse :
+        input(type='text' name='formParent1Adresse' value=donneeEleve[1][0]['adresse'])
+        br
+        |             Téléphonne :
+        input(type='text' name='formParent1Telephone' value=donneeEleve[1][0]['telephonne'])
+        br
+        |             GSM :
+        input(type='text' name='formParent1GSM' value=donneeEleve[1][0]['GSM'])
+        br
+        |             Email :
+        input(type='text' name='formParent1Email' value=donneeEleve[1][0]['email'])
+        br
+        button(onclick='saveParent()') Enregistrer
+#parent2
+    form#formParent2
+        p Parent 2
+        hr(color='black')
+        |             Nom :
+        input(type='text' name='formParent2Nom' value=donneeEleve[0][0]['nomParent'])
+        br
+        |             Prénom :
+        input(type='text' name='formParent2Prenom' value=donneeEleve[0][0]['prenomParent'])
+        br
+        |             Adresse :
+        input(type='text' name='formParent2Adresse' value=donneeEleve[0][0]['adresse'])
+        br
+        |             Téléphonne :
+        input(type='text' name='formParent2Telephone' value=donneeEleve[0][0]['telephonne'])
+        br
+        |             GSM :
+        input(type='text' name='formParent2GSM' value=donneeEleve[0][0]['GSM'])
+        br
+        |             Email :
+        input(type='text' name='formParent2Email' value=donneeEleve[0][0]['email'])
+        br
+        button(onclick='saveParent()') Enregistrer

@@ -46,7 +46,7 @@ router.get('/', function(req, res) {
         var jsonEleve = JSON.parse(dataEleve)['response'];
         test.push(jsonEleve);
 
-        //console.log(test);
+        console.log(test);
         res.render('eleve', {donneeEleve:test});
 
     });

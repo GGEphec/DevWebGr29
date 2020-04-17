@@ -11,31 +11,33 @@ head
         th {
             background-color: #00B7FF;
         }
-    script(src='../routes/garderie.js')
 
-form(method='POST' action='/garderie')
-    input#idGarderie.form-control(type='text', placeholder='Garderie ID' name='idGarderie')
-    input#idEleve.form-control(type='text', placeholder='Student ID' name='idEleve')
-    input#date.form-control(type='text', placeholder='Date' name='date')
-    input#heure.form-control(type='text', placeholder='Hour' name='heure')
-    input#outin.form-control(type='text', placeholder='In/Out' name='outin')
+body
+    h1 Ajout d'une entrée ou sortie de la garderie
+    form(method='POST' action='api/v1/garderie')
+        input(type='text' id='idGarderie' placeholder='Garderie ID' name='idGarderie')
+        input(type='text' id='idEleve' placeholder='Student ID' name='idEleve')
+        input(type='text' id='dateoutin' placeholder='Date' name='dateoutin')
+        input(type='text' id='heure' placeholder='Hour' name='heure')
+        input(type='text' id='outin' placeholder='In/Out' name='outin')
+        input(type='submit')
 
-table#tableGarderie
-    tr
-        th idGarderie
-        th Nom
-        th Prénom
-        th Annee
-        th Date
-        th Heure
-        th In/Out
-    tbody
-        each line in garderieTableau
-            tr
-                td= line.idGarderie
-                td= line.nomEleve
-                td= line.prenomEleve
-                td= line.annee
-                td= line.dateG
-                td= line.heure
-                td= line.outIn
+    table#tableGarderie
+        tr
+            th idGarderie
+            th Nom
+            th Prénom
+            th Annee
+            th Date
+            th Heure
+            th In/Out
+        tbody
+            each line in garderieTableau
+                tr
+                    td= line.idGarderie
+                    td= line.nomEleve
+                    td= line.prenomEleve
+                    td= line.annee
+                    td= line.dateG
+                    td= line.heure
+                    td= line.outIn

@@ -11,24 +11,16 @@ router.get('/', function(req, res, next) {
     if (username && password) {
         res.locals.connection.query('SELECT * FROM utilisateurs WHERE login = ? and motDePasse = ?', [username,password], function(error, results, fields) {
             if (results.length> 0) { //On redirige vers la bonne page si le mdp est correct
-                switch (username){
-                    case 'secretariat01' :
+                switch (results[0].droits){
+                    case '1' :
                         res.redirect('/secretariat');
                         break;
-                    case 'secretariat02' :
+                    case '2' :
                         res.redirect('/secretariat');
                         break;
-                    case 'dir01' :
-                        res.redirect('/secretariat');
-                        break;
-                    case 'garderie01':
+                    case '3':
                         res.redirect('/garderie');
                         break;
-                    case 'garderie02':
-                        res.redirect('/garderie');
-                        break;
-                    default:
-                        res.send('Utilisateur inconnu')
                 }
             }
             else {

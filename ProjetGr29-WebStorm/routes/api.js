@@ -81,8 +81,17 @@ router.post('/eleve', function (req, res, next) {
 
 router.get('/garderie', function (req, res, next) {
     res.locals.connection.query('SELECT idGarderie, nomEleve, prenomEleve, annee, dateoutin, heure, outIn FROM garderie NATURAL JOIN eleves NATURAL JOIN classes', function (error, results, fields) {
+    res.locals.connection.query('SELECT * FROM garderie NATURAL JOIN eleves NATURAL JOIN classes', function (error, results, fields) {
         if (error) throw error;
         res.send({"status": 200, "error": null, "response": results});
+    });
+});
+
+router.post('/garderie', function (req,res,next) {
+    res.locals.connection.query('INSERT INTO garderie(idGarderie,idEleve,dateoutin,heure,outin) VALUES (?,?,?,?,?)', [req.body.idGarderie, req.body.idEleve, req.body.dateoutin, req.body.heure, req.body.outin], function (err, result) {
+        if (err) throw err;
+        console.log("1 record inserted");
+        res.redirect('/garderie');
     });
 });
 

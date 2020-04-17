@@ -31,7 +31,7 @@ router.get('/', function(req, res) {
                     break;
             }
         } else {
-            res2.send('Incorrect Username and/or Password!');
+            res.send('Incorrect Username and/or Password!');
         }
         res.render('login');
     });

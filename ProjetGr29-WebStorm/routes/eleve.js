@@ -46,7 +46,10 @@ router.get('/', function(req, res) {
         var jsonEleve = JSON.parse(dataEleve)['response'];
         test.push(jsonEleve);
 
-        console.log(test);
+        //console.log(test);
+        for(let i=0; i<10; i++){
+            //ralentir le chargement
+        }
         res.render('eleve', {donneeEleve:test});
 
     });

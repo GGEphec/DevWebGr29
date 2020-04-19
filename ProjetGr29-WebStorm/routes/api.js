@@ -3,6 +3,22 @@ var router = express.Router();
 var app = express();
 
 
+//Variable de contenu de la base de donnée
+var currentIdEleve;
+var currentIdParent;
+var currentIdGarderie;
+
+router.get('/init', function (req, res, next){
+    res.locals.connection.query('SELECT MAX(idParent) AS P, MAX(idEleve) AS E FROM parents, eleves',function(error, results, fields){
+        res.send({"status":200, "error":null, "response":results});
+        currentIdParent = results[0]['P'];
+        currentIdEleve = results[0]['E'];
+    });
+
+});
+
+
+
 //
 router.get('/login', function(req,res,next){
     var username = req.query.username;
@@ -73,11 +89,21 @@ router.get('/parents', function (req, res, next) {
 
 
 router.post('/eleve', function (req, res, next) {
-   res.locals.connection.query('',function(error, results, fields){
-       if(error) throw error;
-
+    res.locals.connection.query('UPDATE eleves SET nomEleve = ?, prenomEleve = ?, naissance = ?, nationalite = ?, idClasse = ?, parent1Id = ?, parent2Id = ? WHERE idEleve = ?', [req.body.formEleveNom, req.body.formElevePrenom, req.body.formEleveDOB, req.body.formEleveNationalite, req.body.formEleveIdClasse, req.body.formEleveP1, req.body.formEleveP2, req.body.formEleveId],function(error, results, fields){
+        if(error) throw error;
+        console.log('Eleve modifié');
+        res.redirect(req.headers.referer);
    });
 });
+
+router.post('/parent', function (req, res, next) {
+    res.locals.connection.query('UPDATE parents SET nomParent = ?, prenomParent = ?, adresse = ?, telephonne = ?, GSM = ?, email = ? WHERE idParent = ?',[req.body.formParentNom, req.body.formParentPrenom, req.body.formParentAdresse, req.body.formParentTelephone, req.body.formParentGSM, req.body.formParentEmail, req.body.formParentId],function (err, results) {
+       if (err) throw err;
+       console.log("Parent modifié");
+       res.redirect(req.headers.referer);
+    });
+});
+
 
 router.get('/garderie', function (req, res, next) {
     res.locals.connection.query('SELECT * FROM garderie NATURAL JOIN eleves NATURAL JOIN classes', function (error, results, fields) {

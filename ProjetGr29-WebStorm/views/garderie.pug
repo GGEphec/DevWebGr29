@@ -11,8 +11,15 @@ head
         th {
             background-color: #00B7FF;
         }
-
+    link(rel='stylesheet', href='/stylesheets/style.css')
 body
+    .header
+        img(src='/logo/logo.png')
+        a(href='localhost:3000/login')  Déconnexion
+        .inner_header
+            .logo_container
+                h1 Ecole de Ath
+
     h1 Ajout d'une entrée ou sortie de la garderie
     form(method='POST' action='api/v1/garderie')
         input(type='text' id='idGarderie' placeholder='Garderie ID' name='idGarderie')

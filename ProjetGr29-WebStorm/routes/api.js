@@ -9,7 +9,7 @@ var currentIdParent;
 var currentIdGarderie;
 
 router.get('/init', function (req, res, next){
-    res.locals.connection.query('SELECT MAX(idParent) AS P, MAX(idEleve) AS E, MAX(idGarderie) AS G FROM parents, eleves, garderie',function(error, results, fields){
+    res.locals.connection.query('SELECT MAX(idParent) AS P, MAX(eleves.idEleve) AS E, MAX(idGarderie) AS G FROM parents, eleves, garderie\n',function(error, results, fields){
         res.send({"status":200, "error":null, "response":results});
         currentIdParent = results[0]['P'];
         currentIdEleve = results[0]['E'];

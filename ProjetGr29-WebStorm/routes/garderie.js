@@ -17,6 +17,7 @@ router.get('/', function(req, res){
          // 
          gard.push({
             idGarderie: json[i]['idGarderie'],
+            idEleve: json[i]['idEleve'],
             nomEleve: json[i]['nomEleve'],
             prenomEleve: json[i]['prenomEleve'],
             annee: json[i]['annee'],

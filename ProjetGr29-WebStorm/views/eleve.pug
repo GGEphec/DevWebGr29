@@ -32,11 +32,20 @@ head
             margin: 2px 2px 2px 5px;
             padding-left: 4px;
         }
+    link(rel='stylesheet', href='/stylesheets/style.css')
 script.
     function retour() {
         window.location.replace('http://localhost:3000/secretariat');
     }
 body
+    .header
+        img(src='/logo/logo.png')
+        a(href='localhost:3000/login')  Déconnexion
+        .inner_header
+            .logo_container
+                h1 Ecole de Ath
+    br
+    br
     title #eleve
     form#formEleve(method='POST' action='api/v1/eleve')
         label Nom :

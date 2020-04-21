@@ -21,11 +21,10 @@ body
                 h1 Ecole de Ath
 
     h1 Ajout d'une entrée ou sortie de la garderie
-    form(method='POST' action='api/v1/garderie')
-        input(type='text' id='idGarderie' placeholder='Garderie ID' name='idGarderie')
+    form(method='POST' action='api/v1/garderie' autocomplete='on')
         input(type='text' id='idEleve' placeholder='Student ID' name='idEleve')
-        input(type='text' id='dateoutin' placeholder='Date' name='dateoutin')
-        input(type='text' id='heure' placeholder='Hour' name='heure')
+        input(type='date' id='dateoutin' placeholder='Date' name='dateoutin' value=Date)
+        input(type='time' id='heure' placeholder='Hour' name='heure')
         input(type='text' id='outin' placeholder='In/Out' name='outin')
         input(type='submit')
 

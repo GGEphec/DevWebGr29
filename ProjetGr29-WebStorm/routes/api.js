@@ -127,7 +127,7 @@ router.post('/parent', function (req, res, next) {
 
 router.get('/garderie', function (req, res, next) {
 
-    res.locals.connection.query('SELECT * FROM garderie NATURAL JOIN eleves NATURAL JOIN classes GROUP BY idEleve', function (error, results, fields) {
+    res.locals.connection.query('SELECT idGarderie, garderie.idEleve, nomEleve, prenomEleve, annee, DATE_FORMAT(dateoutin, "%d/%m/%Y") as dateoutin, heure, outIn FROM garderie NATURAL JOIN eleves NATURAL JOIN classes ORDER BY garderie.idEleve ASC, dateoutin ASC, heure ASC', function (error, results, fields) {
 
         if (error) throw error;
         res.send({"status": 200, "error": null, "response": results});

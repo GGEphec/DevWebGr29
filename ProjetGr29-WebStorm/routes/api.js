@@ -39,7 +39,7 @@ router.get('/eleves', function(req, res, next) {
     var eleve_surname = req.query.surname;
     //console.log(eleve_name);
     if (typeof eleve_id != "undefined") {
-        res.locals.connection.query('SELECT * from eleves NATURAL JOIN classes WHERE idEleve = ?' ,[eleve_id], function (error, results, fields) {
+        res.locals.connection.query('SELECT idEleve, nomEleve, prenomEleve, DATE_FORMAT(naissance, "%d/%m/%Y") as naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes WHERE idEleve = ?' ,[eleve_id], function (error, results, fields) {
             if (error) throw error;
             //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
             res.send({"status": 200, "error": null, "response": results});
@@ -47,14 +47,14 @@ router.get('/eleves', function(req, res, next) {
     }
     else if (typeof eleve_name != "undefined") {
         if (typeof eleve_surname != "undefined") {
-            res.locals.connection.query('select * from eleves NATURAL JOIN classes where nomEleve like ? AND prenomEleve LIKE ?' ,[eleve_name+'%', eleve_surname+'%'], function (error, results, fields) {
+            res.locals.connection.query('select idEleve, nomEleve, prenomEleve, DATE_FORMAT(naissance, "%d/%m/%Y") as naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes where nomEleve like ? AND prenomEleve LIKE ?' ,[eleve_name+'%', eleve_surname+'%'], function (error, results, fields) {
                 if (error) throw error;
                 //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
                 res.send({"status": 200, "error": null, "response": results});
             });
         }
         else {
-            res.locals.connection.query('select * from eleves NATURAL JOIN classes where nomEleve like ?', [eleve_name + '%'], function (error, results, fields) {
+            res.locals.connection.query('select idEleve, nomEleve, prenomEleve, DATE_FORMAT(naissance, "%d/%m/%Y") as naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes where nomEleve like ?', [eleve_name + '%'], function (error, results, fields) {
                 if (error) throw error;
                 //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
                 res.send({"status": 200, "error": null, "response": results});
@@ -62,7 +62,7 @@ router.get('/eleves', function(req, res, next) {
         }
     }
     else {
-        res.locals.connection.query('SELECT * from eleves NATURAL JOIN classes', function (error, results, fields) {
+        res.locals.connection.query('SELECT idEleve, nomEleve, prenomEleve, DATE_FORMAT(naissance, "%d/%m/%Y") as naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes', function (error, results, fields) {
             if (error) throw error;
             //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
             res.send({"status": 200, "error": null, "response": results});
@@ -99,16 +99,11 @@ router.post('/eleve', function (req, res, next) {
         });
     }
     else{ //Si l'élève est déjà connu
-        if(req.body.formParentId==0) { //Si c'est un nouveau parent
-
-        }
-        else {
-            res.locals.connection.query('UPDATE eleves SET nomEleve = ?, prenomEleve = ?, naissance = ?, nationalite = ?, idClasse = ?, parent1Id = ?, parent2Id = ? WHERE idEleve = ?', [req.body.formEleveNom, req.body.formElevePrenom, req.body.formEleveDOB, req.body.formEleveNationalite, req.body.formEleveIdClasse, req.body.formEleveP1, req.body.formEleveP2, req.body.formEleveId],function(error, results, fields){
-                if(error) throw error;
-                console.log('Eleve modifié');
-                res.redirect(req.headers.referer);
-            });
-        }
+        res.locals.connection.query('UPDATE eleves SET nomEleve = ?, prenomEleve = ?, naissance = ?, nationalite = ?, idClasse = ?, parent1Id = ?, parent2Id = ? WHERE idEleve = ?', [req.body.formEleveNom, req.body.formElevePrenom, req.body.formEleveDOB, req.body.formEleveNationalite, req.body.formEleveIdClasse, req.body.formEleveP1, req.body.formEleveP2, req.body.formEleveId],function(error, results, fields){
+            if(error) throw error;
+            console.log('Eleve modifié');
+            res.redirect(req.headers.referer);
+        });
     }
 
 
@@ -117,11 +112,21 @@ router.post('/eleve', function (req, res, next) {
 });
 
 router.post('/parent', function (req, res, next) {
-    res.locals.connection.query('UPDATE parents SET nomParent = ?, prenomParent = ?, adresse = ?, telephonne = ?, GSM = ?, email = ? WHERE idParent = ?',[req.body.formParentNom, req.body.formParentPrenom, req.body.formParentAdresse, req.body.formParentTelephone, req.body.formParentGSM, req.body.formParentEmail, req.body.formParentId],function (err, results) {
-       if (err) throw err;
-       console.log("Parent modifié");
-       res.redirect(req.headers.referer);
-    });
+    if(req.body.formParentId==0) { //Si c'est un nouveau parent
+        res.locals.connection.query('INSERT INTO parents ',[], function (err, results, fields) {
+            if(error) throw error;
+            console.log('Parent ajouté');
+            currentIdParent++;
+            res.redirect(req.headers.referer); //pas juste changer la redirection
+        });
+    }
+    else {
+        res.locals.connection.query('UPDATE parents SET nomParent = ?, prenomParent = ?, adresse = ?, telephonne = ?, GSM = ?, email = ? WHERE idParent = ?', [req.body.formParentNom, req.body.formParentPrenom, req.body.formParentAdresse, req.body.formParentTelephone, req.body.formParentGSM, req.body.formParentEmail, req.body.formParentId], function (err, results) {
+            if (err) throw err;
+            console.log("Parent modifié");
+            res.redirect(req.headers.referer);
+        });
+    }
 });
 
 

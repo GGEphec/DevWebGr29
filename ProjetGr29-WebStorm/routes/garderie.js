@@ -3,7 +3,6 @@ var router = express.Router();
 const request = require('request');
 
 
-
 router.get('/', function(req, res){
    const options = {
       url : 'http://localhost:3000/api/v1/garderie',

@@ -21,6 +21,7 @@ router.get('/', function(req, res) {
     request1(optionsParent1, function (errParent1, resParent1, dataParent1){
         var jsonParent1 = JSON.parse(dataParent1)['response'];
         test[0]=jsonParent1;
+
     });
 
 
@@ -33,6 +34,7 @@ router.get('/', function(req, res) {
     request2(optionsParent2, function (errParent2, resParent2, dataParent2){
         var jsonParent2 = JSON.parse(dataParent2)['response'];
         test[1]=jsonParent2;
+
     });
 
 
@@ -44,12 +46,14 @@ router.get('/', function(req, res) {
 
     request(options, function(err, res2, dataEleve) {
         var jsonEleve = JSON.parse(dataEleve)['response'];
+
         test[2]=jsonEleve;
 
         //console.log(test);
         for(let i=0; i<10; i++){
             //ralentir le chargement
         }
+
         res.render('eleve', {donneeEleve:test});
 
     });

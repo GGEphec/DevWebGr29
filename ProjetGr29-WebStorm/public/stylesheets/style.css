@@ -20,8 +20,13 @@ a {
   background-color: #101010;
 
 }
+.header img{
+  float : left;
+  width:100px;
+  height:100%;
+}
 .inner_header{
-  width : 60%;
+  width : 75%;
   height:100%;
   display: block;
   margin: 0 auto;
@@ -39,6 +44,14 @@ a {
   height:100%;
   display: table-cell;
   vertical-align: middle;
+  font-family: "Montserrat";
+  font-weight: 200;
+}
+.header a{
+  color: white;
+  margin: 1%;
+  height:100%;
+  float: right;
   font-family: "Montserrat";
   font-weight: 200;
 }

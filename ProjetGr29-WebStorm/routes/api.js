@@ -98,11 +98,16 @@ router.post('/eleve', function (req, res, next) {
         });
     }
     else{ //Si l'élève est déjà connu
-        res.locals.connection.query('UPDATE eleves SET nomEleve = ?, prenomEleve = ?, naissance = ?, nationalite = ?, idClasse = ?, parent1Id = ?, parent2Id = ? WHERE idEleve = ?', [req.body.formEleveNom, req.body.formElevePrenom, req.body.formEleveDOB, req.body.formEleveNationalite, req.body.formEleveIdClasse, req.body.formEleveP1, req.body.formEleveP2, req.body.formEleveId],function(error, results, fields){
-            if(error) throw error;
-            console.log('Eleve modifié');
-            res.redirect(req.headers.referer);
-        });
+        if(req.body.formParentId==0) { //Si c'est un nouveau parent
+
+        }
+        else {
+            res.locals.connection.query('UPDATE eleves SET nomEleve = ?, prenomEleve = ?, naissance = ?, nationalite = ?, idClasse = ?, parent1Id = ?, parent2Id = ? WHERE idEleve = ?', [req.body.formEleveNom, req.body.formElevePrenom, req.body.formEleveDOB, req.body.formEleveNationalite, req.body.formEleveIdClasse, req.body.formEleveP1, req.body.formEleveP2, req.body.formEleveId],function(error, results, fields){
+                if(error) throw error;
+                console.log('Eleve modifié');
+                res.redirect(req.headers.referer);
+            });
+        }
     }
 
 

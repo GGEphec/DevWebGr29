@@ -89,11 +89,25 @@ router.get('/parents', function (req, res, next) {
 
 
 router.post('/eleve', function (req, res, next) {
-    res.locals.connection.query('UPDATE eleves SET nomEleve = ?, prenomEleve = ?, naissance = ?, nationalite = ?, idClasse = ?, parent1Id = ?, parent2Id = ? WHERE idEleve = ?', [req.body.formEleveNom, req.body.formElevePrenom, req.body.formEleveDOB, req.body.formEleveNationalite, req.body.formEleveIdClasse, req.body.formEleveP1, req.body.formEleveP2, req.body.formEleveId],function(error, results, fields){
-        if(error) throw error;
-        console.log('Eleve modifié');
-        res.redirect(req.headers.referer);
-   });
+    if(req.body.formEleveId==0){ //Si c'est un nouvel élève
+        res.locals.connection.query('INSERT INTO eleves (idEleve, nomEleve, prenomEleve, naissance, nationalite, idClasse, parent1Id, parent2Id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [currentIdEleve+1, req.body.formEleveNom, req.body.formElevePrenom, req.body.formEleveDOB, req.body.formEleveNationalite, req.body.formEleveClasse, req.body.formEleveP1, req.body.formEleveP2], function(error, results, fields){
+            if(error) throw error;
+            console.log('Eleve ajouté');
+            currentIdEleve++;
+            res.redirect(req.headers.referer);//pas juste faut changer les id
+        });
+    }
+    else{ //Si l'élève est déjà connu
+        res.locals.connection.query('UPDATE eleves SET nomEleve = ?, prenomEleve = ?, naissance = ?, nationalite = ?, idClasse = ?, parent1Id = ?, parent2Id = ? WHERE idEleve = ?', [req.body.formEleveNom, req.body.formElevePrenom, req.body.formEleveDOB, req.body.formEleveNationalite, req.body.formEleveIdClasse, req.body.formEleveP1, req.body.formEleveP2, req.body.formEleveId],function(error, results, fields){
+            if(error) throw error;
+            console.log('Eleve modifié');
+            res.redirect(req.headers.referer);
+        });
+    }
+
+
+
+
 });
 
 router.post('/parent', function (req, res, next) {

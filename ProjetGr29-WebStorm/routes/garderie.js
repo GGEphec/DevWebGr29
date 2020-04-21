@@ -14,6 +14,7 @@ router.get('/', function(req, res){
    request(options, function(err, res2, data) {
       var json = JSON.parse(data)['response'];
       for (let i = 0; i < json.length; i++) {
+         // 
          gard.push({
             idGarderie: json[i]['idGarderie'],
             nomEleve: json[i]['nomEleve'],

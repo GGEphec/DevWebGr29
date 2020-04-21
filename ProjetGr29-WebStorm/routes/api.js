@@ -9,10 +9,11 @@ var currentIdParent;
 var currentIdGarderie;
 
 router.get('/init', function (req, res, next){
-    res.locals.connection.query('SELECT MAX(idParent) AS P, MAX(idEleve) AS E FROM parents, eleves',function(error, results, fields){
+    res.locals.connection.query('SELECT MAX(idParent) AS P, MAX(idEleve) AS E, MAX(idGarderie) AS G FROM parents, eleves, garderie',function(error, results, fields){
         res.send({"status":200, "error":null, "response":results});
         currentIdParent = results[0]['P'];
         currentIdEleve = results[0]['E'];
+        currentIdGarderie = results[0]['G'];
     });
 
 });
@@ -126,7 +127,7 @@ router.post('/parent', function (req, res, next) {
 
 router.get('/garderie', function (req, res, next) {
 
-    res.locals.connection.query('SELECT * FROM garderie NATURAL JOIN eleves NATURAL JOIN classes', function (error, results, fields) {
+    res.locals.connection.query('SELECT * FROM garderie NATURAL JOIN eleves NATURAL JOIN classes GROUP BY idEleve', function (error, results, fields) {
 
         if (error) throw error;
         res.send({"status": 200, "error": null, "response": results});
@@ -134,9 +135,10 @@ router.get('/garderie', function (req, res, next) {
 });
 
 router.post('/garderie', function (req,res,next) {
-    res.locals.connection.query('INSERT INTO garderie(idGarderie,idEleve,dateoutin,heure,outin) VALUES (?,?,?,?,?)', [req.body.idGarderie, req.body.idEleve, req.body.dateoutin, req.body.heure, req.body.outin], function (err, result) {
+    res.locals.connection.query('INSERT INTO garderie(idGarderie,idEleve,dateoutin,heure,outin) VALUES (?,?,?,?,?)', [currentIdGarderie + 1, req.body.idEleve, req.body.dateoutin, req.body.heure, req.body.outin], function (err, result) {
         if (err) throw err;
         console.log("1 record inserted");
+        currentIdGarderie++;
         res.redirect('/garderie');
     });
 });

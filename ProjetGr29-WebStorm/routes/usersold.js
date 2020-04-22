@@ -11,6 +11,16 @@ var querystring = require('querystring');
 
 router.get('/', function(req, res) {
 
+    const optionInit = {
+        url: 'http://localhost:3000/api/v1/init',
+        method: 'GET'
+    };
+
+    requestInit(optionInit, function (err, res2, results){
+       //initalisation  des variables ok
+    });
+
+
     var param = querystring.parse(url.parse(req.url).query);
     var username = param.username;
     var password = param.password;

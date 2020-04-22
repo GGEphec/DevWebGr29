@@ -39,7 +39,7 @@ router.get('/eleves', function(req, res, next) {
     var eleve_surname = req.query.surname;
     //console.log(eleve_name);
     if (typeof eleve_id != "undefined") {
-        res.locals.connection.query('SELECT idEleve, nomEleve, prenomEleve, DATE_FORMAT(naissance, "%d/%m/%Y") as naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes WHERE idEleve = ?' ,[eleve_id], function (error, results, fields) {
+        res.locals.connection.query('SELECT idEleve, nomEleve, prenomEleve, naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes WHERE idEleve = ?' ,[eleve_id], function (error, results, fields) {
             if (error) throw error;
             //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
             res.send({"status": 200, "error": null, "response": results});
@@ -47,14 +47,14 @@ router.get('/eleves', function(req, res, next) {
     }
     else if (typeof eleve_name != "undefined") {
         if (typeof eleve_surname != "undefined") {
-            res.locals.connection.query('select idEleve, nomEleve, prenomEleve, DATE_FORMAT(naissance, "%d/%m/%Y") as naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes where nomEleve like ? AND prenomEleve LIKE ?' ,[eleve_name+'%', eleve_surname+'%'], function (error, results, fields) {
+            res.locals.connection.query('select idEleve, nomEleve, prenomEleve, naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes where nomEleve like ? AND prenomEleve LIKE ?' ,[eleve_name+'%', eleve_surname+'%'], function (error, results, fields) {
                 if (error) throw error;
                 //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
                 res.send({"status": 200, "error": null, "response": results});
             });
         }
         else {
-            res.locals.connection.query('select idEleve, nomEleve, prenomEleve, DATE_FORMAT(naissance, "%d/%m/%Y") as naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes where nomEleve like ?', [eleve_name + '%'], function (error, results, fields) {
+            res.locals.connection.query('select idEleve, nomEleve, prenomEleve, naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes where nomEleve like ?', [eleve_name + '%'], function (error, results, fields) {
                 if (error) throw error;
                 //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
                 res.send({"status": 200, "error": null, "response": results});
@@ -62,7 +62,7 @@ router.get('/eleves', function(req, res, next) {
         }
     }
     else {
-        res.locals.connection.query('SELECT idEleve, nomEleve, prenomEleve, DATE_FORMAT(naissance, "%d/%m/%Y") as naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes', function (error, results, fields) {
+        res.locals.connection.query('SELECT idEleve, nomEleve, prenomEleve, naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes', function (error, results, fields) {
             if (error) throw error;
             //res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
             res.send({"status": 200, "error": null, "response": results});

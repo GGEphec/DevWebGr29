@@ -1,87 +1,84 @@
+//Code permettant d'aller chercher les différentes entrées et sorties des élèves de la garderie et de les afficher sous forme de tableau
+
 var express = require('express');
 var router = express.Router();
 const request = require('request');
-const request2 = require('request');
+const requestListeEleve = require('request');
 var dateChar;
 var heureChar;
 
 //Récupère la date et l'heure du jour
 function temps() {
-   var ts = Date.now();
+    var ts = Date.now();
 
-   var currentDate = new Date(ts);
-   console.log(currentDate);
-   var day = currentDate.getDate();
-   if (day < 10) {
-      day = "0" + day;
-   }
-   var month = currentDate.getMonth() + 1;
-   if (month < 10) {
-      month = "0" + month;
-   }
-   var year = currentDate.getFullYear();
-   dateChar = year + "-" + month + "-" + day;
+    var currentDate = new Date(ts);
+    console.log(currentDate);
+    var day = currentDate.getDate();
+    if (day < 10) {
+        day = "0" + day;
+    }
+    var month = currentDate.getMonth() + 1;
+    if (month < 10) {
+        month = "0" + month;
+    }
+    var year = currentDate.getFullYear();
+    dateChar = year + "-" + month + "-" + day;
 
-   var heure = currentDate.getHours();
-   if (heure < 10) {
-      heure = "O" + heure;
-   }
-   var minutes = currentDate.getMinutes();
-   if (minutes < 10) {
-      minutes = "0" + minutes;
-   }
+    var heure = currentDate.getHours();
+    if (heure < 10) {
+        heure = "O" + heure;
+    }
+    var minutes = currentDate.getMinutes();
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
 
-   heureChar = heure + ":" + minutes;
+    heureChar = heure + ":" + minutes;
 }
 
 
 router.get('/', function(req, res){
-   temps();
+    temps();
 
-//Constante liste élèves
-   var eleves=[];
-   const option2 = {
-      url: 'http://localhost:3000/api/v1/eleves',
-      method: 'GET'
-   };
-   request2(option2, function(err, res2, data) {
-      var json2 = JSON.parse(data)['response'];
-      for (let i = 0; i < json2.length; i++) {
-         eleves.push({
-            id: json2[i]['idEleve'],
-            nom: json2[i]['nomEleve'],
-            prenom: json2[i]['prenomEleve'],
-            naissance: json2[i]['naissance'],
-            classe: json2[i]['annee'],
-            p1: json2[i]['parent1Id'],
-            p2: json2[i]['parent2Id']
-         });
-      }
-   });
+    //Constante liste élèves
+    var eleves=[];
+    const optionListeEleve = {
+        url: 'http://localhost:3000/api/v1/eleves',
+        method: 'GET'
+    };
+    requestListeEleve(optionListeEleve, function(errListeEleve, resListeEleve, dataListeEleve) {
+        var jsonListeEleve = JSON.parse(dataListeEleve)['response'];
+        for (let i = 0; i < jsonListeEleve.length; i++) {
+            eleves.push({
+                id: jsonListeEleve[i]['idEleve'],
+                nom: jsonListeEleve[i]['nomEleve'],
+                prenom: jsonListeEleve[i]['prenomEleve']
+            });
+        }
+    });
 
-// Affichage le tableau de la garderie
-   const options = {
-      url : 'http://localhost:3000/api/v1/garderie',
-      method : 'GET'
-   }
-   var gard=[];
-   request(options, function(err, res2, data) {
-      var json = JSON.parse(data)['response'];
-      for (let i = 0; i < json.length; i++) {
-         // 
-         gard.push({
-            idGarderie: json[i]['idGarderie'],
-            idEleve: json[i]['idEleve'],
-            nomEleve: json[i]['nomEleve'],
-            prenomEleve: json[i]['prenomEleve'],
-            annee: json[i]['annee'],
-            dateG: json[i]['dateoutin'],
-            heure: json[i]['heure'],
-            outIn: json[i]['outIn']
-         });
-      }
-      res.render('garderie', {garderieTableau:gard, dateActuelle:dateChar, heureActuelle:heureChar, listeNoms:eleves});
-   });
+    // Affichage le tableau de la garderie
+    const optionsEntreeGarderie = {
+        url : 'http://localhost:3000/api/v1/garderie',
+        method : 'GET'
+    };
+    var garderie=[];
+    request(optionsEntreeGarderie, function(errEntreeGarderie, resEntreeGarderie, dataEntreeGarderie) {
+        var jsonEntreeGarderie = JSON.parse(dataEntreeGarderie)['response'];
+        for (let i = 0; i < jsonEntreeGarderie.length; i++) {
+            garderie.push({
+                idGarderie: jsonEntreeGarderie[i]['idGarderie'],
+                idEleve: jsonEntreeGarderie[i]['idEleve'],
+                nomEleve: jsonEntreeGarderie[i]['nomEleve'],
+                prenomEleve: jsonEntreeGarderie[i]['prenomEleve'],
+                annee: jsonEntreeGarderie[i]['annee'],
+                dateG: jsonEntreeGarderie[i]['dateoutin'],
+                heure: jsonEntreeGarderie[i]['heure'],
+                outIn: jsonEntreeGarderie[i]['outIn']
+            });
+        }
+        res.render('garderie', {garderieTableau:garderie, dateActuelle:dateChar, heureActuelle:heureChar, listeNoms:eleves});
+    });
 });
 
 module.exports = router;

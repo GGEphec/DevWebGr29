@@ -1,22 +1,22 @@
+//Code permetant de générer les données nécessaire pour la page de travail des secrétaires
+
 var express = require('express');
 var router = express.Router();
 const request = require('request');
 
 
-
-//Lancement de la page Html
 router.get('/', function(req, res) {
 
-    var test=[];
+    var listeEleves=[];
 
-    const option2 = {
+    const option = {
         url: 'http://localhost:3000/api/v1/eleves',
         method: 'GET'
     };
-    request(option2, function(err, res2, data) {
+    request(option, function(err, res2, data) {
         var json = JSON.parse(data)['response'];
-        for (let i = 0; i < json.length; i++) {
-            test.push({
+        for (let i = 1; i < json.length; i++) { //Premier élément négligé car eleve 0
+            listeEleves.push({
                 id: json[i]['idEleve'],
                 nom: json[i]['nomEleve'],
                 prenom: json[i]['prenomEleve'],
@@ -26,11 +26,10 @@ router.get('/', function(req, res) {
                 p2: json[i]['parent2Id']
             });
         }
-        res.render('secretariat', {eleveListe:test});
+        res.render('secretariat', {eleveListe:listeEleves});
     });
 
 });
-
 
 module.exports = router;
 

@@ -1,4 +1,3 @@
-doctype html
 head
     meta(charset='UTF-8')
     style.
@@ -25,7 +24,6 @@ head
         }
         button{
             display: block;
-            margin: auto;
         }
         input {
             width: fit-content;
@@ -33,17 +31,14 @@ head
             padding-left: 4px;
         }
     link(rel='stylesheet', href='/stylesheets/style.css')
-script.
-    function retour() {
-        window.location.replace('http://localhost:3000/secretariat');
-    }
+
 body
-    .header
-        img(src='/logo/logo.png')
-        a(href='localhost:3000/login')  Déconnexion
-        .inner_header
-            .logo_container
-                h1 Ecole de Ath
+    header.header
+        img.headerLogo(src='/logo/logo.png')
+        h1.headerText Ecole de Ath
+        form.headerDeco(action='login' method='GET')
+            input(type='submit' value='Se déconnecter')
+
     br
     br
     title #eleve
@@ -55,7 +50,7 @@ body
         input(type='text' name='formElevePrenom' value=donneeEleve[2][0]['prenomEleve'])
         br
         label Date de naissance :
-        input(type='text' name='formEleveDOB' value=donneeEleve[2][0]['naissance'])
+        input(type='date' name='formEleveDOB' value=donneeEleve[2][0]['naissance'])
         br
         label Nationalité :
         input(type='text' name='formEleveNationalite' value=donneeEleve[2][0]['nationalite'])
@@ -116,4 +111,5 @@ body
             br
             input(type='hidden' name='formParentId' value=donneeEleve[0][0]['idParent'])
             button(type='submit') Enregistrer
-    button(onclick='retour()') Retour
+    form(action='secretariat' method='GET')
+        input(type='submit' value='Retour')

@@ -1,13 +1,14 @@
+//Code principal permettant de gérer l'application
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql');
-var Vue = require('vue');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/usersold');
+//Les différentes routes que l'on va utiliser
+var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var apiRouter = require('./routes/api');
 var garderieRouter = require('./routes/garderie');
@@ -22,7 +23,7 @@ app.use(function (req, res, next) {
         host     : 'localhost',
         user     : 'root',
         password : '',
-        database : 'ecole'
+        database : 'ecole' //TODO remettre la base de base
     });
     res.locals.connection.connect();
     next();
@@ -40,10 +41,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// app.use('/', indexRouter);
-// indexRouter.initialize(app);
-app.use('/', indexRouter);
-
+//Redirection en fonction de la route
 app.use('/login', loginRouter);
 app.use('/api/v1/', apiRouter);
 app.use('/users', usersRouter);

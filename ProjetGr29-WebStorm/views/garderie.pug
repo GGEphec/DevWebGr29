@@ -1,4 +1,3 @@
-doctype html
 head
     meta(charset='UTF-8')
     title Garderie
@@ -19,30 +18,27 @@ head
         }
     link(rel='stylesheet', href='/stylesheets/style.css')
 body
-    .header
-        img(src='/logo/logo.png')
-        a(href='localhost:3000/login')  Déconnexion
-        .inner_header
-            .logo_container
-                h1 Ecole de Ath
+    header.header
+        img.headerLogo(src='/logo/logo.png')
+        h1.headerText Ecole de Ath
+        form.headerDeco(action='login' method='GET')
+            input(type='submit' value='Se déconnecter')
+
 
     h1 Ajout d'une entrée ou sortie de la garderie
     br
     form(method='POST' action='api/v1/garderie' autocomplete='on')
         label(for='idEleve') Nom:
-        input(type='text' id='idEleve' placeholder='Student ID' name='idEleve' list='suggestionNom')
-        datalist#suggestionNom
+        select(id='idEleve' name='idEleve')
             for eleves in listeNoms
-                option(value=eleves.id label=eleves.nom + " " + eleves.prenom)
+                option(value=eleves.id) #{eleves.nom} #{eleves.prenom}
         label(for'dateoutin') Date:
         input(type='date' id='dateoutin' placeholder='Date' name='dateoutin' value=dateActuelle)
         label(for='heure') Heure:
         input(type='time' id='heure' placeholder='Hour' name='heure' value=heureActuelle)
-        input(type='text' id='outin' placeholder='in/out' name='outin' list='inout' )
-        datalist#inout
-            select
-                option(value='in')
-                option(value='out')
+        select(id='outin' name='outin')
+            option(value='In') In
+            option(value='Out') Out
         input(type='submit' value='Enregistrer')
     br
     table#tableGarderie

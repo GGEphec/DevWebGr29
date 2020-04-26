@@ -3,6 +3,12 @@ head
     meta(charset='UTF-8')
     title Garderie
     style.
+        body {
+            margin-left: 10px;
+        }
+        form input {
+            margin: 5px;
+        }
         table, th, td {
             border:solid black 2px;
             padding: 2px;
@@ -21,13 +27,24 @@ body
                 h1 Ecole de Ath
 
     h1 Ajout d'une entrée ou sortie de la garderie
+    br
     form(method='POST' action='api/v1/garderie' autocomplete='on')
-        input(type='text' id='idEleve' placeholder='Student ID' name='idEleve')
-        input(type='date' id='dateoutin' placeholder='Date' name='dateoutin' value=Date)
-        input(type='time' id='heure' placeholder='Hour' name='heure')
-        input(type='text' id='outin' placeholder='In/Out' name='outin')
-        input(type='submit')
-
+        label(for='idEleve') Nom:
+        input(type='text' id='idEleve' placeholder='Student ID' name='idEleve' list='suggestionNom')
+        datalist#suggestionNom
+            for eleves in listeNoms
+                option(value=eleves.id label=eleves.nom + " " + eleves.prenom)
+        label(for'dateoutin') Date:
+        input(type='date' id='dateoutin' placeholder='Date' name='dateoutin' value=dateActuelle)
+        label(for='heure') Heure:
+        input(type='time' id='heure' placeholder='Hour' name='heure' value=heureActuelle)
+        input(type='text' id='outin' placeholder='in/out' name='outin' list='inout' )
+        datalist#inout
+            select
+                option(value='in')
+                option(value='out')
+        input(type='submit' value='Enregistrer')
+    br
     table#tableGarderie
         tr
             th idGarderie

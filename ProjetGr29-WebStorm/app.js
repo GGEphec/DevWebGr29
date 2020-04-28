@@ -14,6 +14,7 @@ var apiRouter = require('./routes/api');
 var garderieRouter = require('./routes/garderie');
 var secretariatRouter = require('./routes/secretariat');
 var eleveRouter = require('./routes/eleve');
+var errorRouter = require('./routes/error');
 
 var app = express();
 
@@ -48,6 +49,7 @@ app.use('/users', usersRouter);
 app.use('/garderie', garderieRouter);
 app.use('/secretariat', secretariatRouter);
 app.use('/eleve', eleveRouter);
+app.use('/error', errorRouter);
 
 
 // catch 404 and forward to error handler
@@ -63,7 +65,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', {message:"Page non trouvée"});
 });
 
 module.exports = app;

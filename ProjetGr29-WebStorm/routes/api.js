@@ -110,8 +110,7 @@ router.post('/parent', function (req, res, next) {
             }
             else {
                 console.log("Parent modifié");
-                res.sendStatus(200);
-                //res.redirect(req.headers.referer);
+                res.redirect(req.headers.referer);
             }
         });
     }
@@ -139,7 +138,7 @@ router.post('/garderie', function (req,res,next) {
         }
          else {
              console.log("1 record inserted");
-             res.redirect(302, '/garderie');
+             res.redirect('/garderie');
          }
     });
 });

@@ -1,0 +1,401 @@
+{
+	"info": {
+		"_postman_id": "8a437344-29a0-4000-9c82-d1195767c609",
+		"name": "ecole",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET eleve",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/eleves",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"eleves"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET eleve by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/eleves?id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"eleves"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET parents by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST eleve",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "formEleveNom",
+							"value": "Cobeau",
+							"type": "text"
+						},
+						{
+							"key": "formElevePrenom",
+							"value": "Marlon",
+							"type": "text"
+						},
+						{
+							"key": "formEleveDOB",
+							"value": "2009-04-29",
+							"type": "text"
+						},
+						{
+							"key": "formEleveNationalite",
+							"value": "BELGIUM",
+							"type": "text"
+						},
+						{
+							"key": "formEleveIdClasse",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "formEleveId",
+							"value": "32",
+							"type": "text"
+						},
+						{
+							"key": "formEleveP1",
+							"value": "14",
+							"type": "text"
+						},
+						{
+							"key": "formEleveP2",
+							"value": "11",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "html"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/eleve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"eleve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT eleve",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "formEleveNom",
+							"value": "Cobeau",
+							"type": "text"
+						},
+						{
+							"key": "formElevePrenom",
+							"value": "Marlon",
+							"type": "text"
+						},
+						{
+							"key": "formEleveDOB",
+							"value": "2009-04-29",
+							"type": "text"
+						},
+						{
+							"key": "formEleveNationalite",
+							"value": "BELGIUM",
+							"type": "text"
+						},
+						{
+							"key": "formEleveIdClasse",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "formEleveId",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "formEleveP1",
+							"value": "14",
+							"type": "text"
+						},
+						{
+							"key": "formEleveP2",
+							"value": "11",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "html"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/eleve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"eleve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST parent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "formParentNom",
+							"value": "Balori",
+							"type": "text"
+						},
+						{
+							"key": "formParentPrenom",
+							"value": "Jean-Michel",
+							"type": "text"
+						},
+						{
+							"key": "formParentAdresse",
+							"value": "Rue du tilleul 42, 7803 Lessines",
+							"type": "text"
+						},
+						{
+							"key": "formParentTelephone",
+							"value": "068335222",
+							"type": "text"
+						},
+						{
+							"key": "formParentGSM",
+							"value": "0477688810",
+							"type": "text"
+						},
+						{
+							"key": "formParentEmail",
+							"value": "jm.balori@yopmail.com",
+							"type": "text"
+						},
+						{
+							"key": "formParentId",
+							"value": "23",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/parent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"parent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT parent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "formParentNom",
+							"value": "Balori",
+							"type": "text"
+						},
+						{
+							"key": "formParentPrenom",
+							"value": "Jean-Michel",
+							"type": "text"
+						},
+						{
+							"key": "formParentAdresse",
+							"value": "Rue du tilleul 42, 7803 Lessines",
+							"type": "text"
+						},
+						{
+							"key": "formParentTelephone",
+							"value": "068335222",
+							"type": "text"
+						},
+						{
+							"key": "formParentGSM",
+							"value": "0477688809",
+							"type": "text"
+						},
+						{
+							"key": "formParentEmail",
+							"value": "jm.balori@yopmail.com",
+							"type": "text"
+						},
+						{
+							"key": "formParentId",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/parent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"parent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET garderie",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT garderie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "idEleve",
+							"value": "11",
+							"type": "text"
+						},
+						{
+							"key": "dateoutin",
+							"value": "2020-04-04",
+							"type": "text"
+						},
+						{
+							"key": "heure",
+							"value": "16:35",
+							"type": "text"
+						},
+						{
+							"key": "outin",
+							"value": "Out",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/garderie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"garderie"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

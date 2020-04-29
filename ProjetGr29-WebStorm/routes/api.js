@@ -40,7 +40,6 @@ router.get('/eleves', function(req, res, next) {
     }
     else { //Récupération de tous les élèves
         res.locals.connection.query('SELECT idEleve, nomEleve, prenomEleve, date_format(naissance, "%Y-%m-%d") as naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes ORDER BY nomEleve', function (error, results, fields) {
-            console.log(error);
             if (error!=null) {
                 res.redirect(529, '/error');
             }
@@ -69,7 +68,6 @@ router.get('/parents', function (req, res, next) {
 router.post('/eleve', function (req, res, next) {
     if(req.body.formEleveId==0){ //Si c'est un nouvel élève
         res.locals.connection.query('INSERT INTO eleves (nomEleve, prenomEleve, naissance, nationalite, idClasse, parent1Id, parent2Id) VALUES (?, ?, ?, ?, ?, ?, ?)', [req.body.formEleveNom, req.body.formElevePrenom, req.body.formEleveDOB, req.body.formEleveNationalite, req.body.formEleveClasse, req.body.formEleveP1, req.body.formEleveP2], function(error, results, fields){
-            console.log(error);
             if (error!=null) {
                 res.redirect(529, '/error');
             }
@@ -86,7 +84,7 @@ router.post('/eleve', function (req, res, next) {
             }
             else {
                 console.log('Eleve modifié');
-                res.redirect(req.headers.referer);
+                res.redirect(req.headers.referer); //TODO changer la redirection
             }
         });
     }
@@ -95,7 +93,7 @@ router.post('/eleve', function (req, res, next) {
 //Ajout ou modification d'un parent dans la base de donnée
 router.post('/parent', function (req, res, next) {
     if(req.body.formParentId==0) { //Si c'est un nouveau parent //TODO a coder
-        res.locals.connection.query('INSERT INTO parents ',[], function (err, results, fields) {
+        res.locals.connection.query('INSERT INTO parents (nomParent, prenomParent, adresse, telephonne, GSM, email) VALUES (?, ?, ?, ?, ?, ?)',[req.body.formParentNom, req.body.formParentPrenom, req.body.formParentAdresse, req.body.formParentTelephone, req.body.formParentGSM, req.body.formParentEmail], function (error, results, fields) {
             if (error!=null) {
                 res.redirect(529, '/error');
             }
@@ -106,13 +104,14 @@ router.post('/parent', function (req, res, next) {
         });
     }
     else { //Si le parent est déjà encodé
-        res.locals.connection.query('UPDATE parents SET nomParent = ?, prenomParent = ?, adresse = ?, telephonne = ?, GSM = ?, email = ? WHERE idParent = ?', [req.body.formParentNom, req.body.formParentPrenom, req.body.formParentAdresse, req.body.formParentTelephone, req.body.formParentGSM, req.body.formParentEmail, req.body.formParentId], function (err, results) {
+        res.locals.connection.query('UPDATE parents SET nomParent = ?, prenomParent = ?, adresse = ?, telephonne = ?, GSM = ?, email = ? WHERE idParent = ?', [req.body.formParentNom, req.body.formParentPrenom, req.body.formParentAdresse, req.body.formParentTelephone, req.body.formParentGSM, req.body.formParentEmail, req.body.formParentId], function (error, results) {
             if (error!=null) {
                 res.redirect(529, '/error');
             }
             else {
                 console.log("Parent modifié");
-                res.redirect(req.headers.referer);
+                res.sendStatus(200);
+                //res.redirect(req.headers.referer);
             }
         });
     }
@@ -133,14 +132,15 @@ router.get('/garderie', function (req, res, next) { //TODO ajouter des contraint
 
 //Ajout d'une entrée dans la table garderie
 router.post('/garderie', function (req,res,next) {
-    res.locals.connection.query('INSERT INTO garderie(idEleve,dateoutin,heure,outin) VALUES (?,?,?,?)', [req.body.idEleve, req.body.dateoutin, req.body.heure, req.body.outin], function (err, result) {
+    console.log(req.body);
+    res.locals.connection.query('INSERT INTO garderie(idEleve,dateoutin,heure,outin) VALUES (?,?,?,?)', [req.body.idEleve, req.body.dateoutin, req.body.heure, req.body.outin], function (error, result) {
         if (error!=null) {
             res.redirect(529, '/error');
         }
-        else {
-            console.log("1 record inserted");
-            res.redirect('/garderie');
-        }
+         else {
+             console.log("1 record inserted");
+             res.redirect(302, '/garderie');
+         }
     });
 });
 

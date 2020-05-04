@@ -64,18 +64,31 @@ router.get('/', function(req, res){
     };
     var garderie=[];
     request(optionsEntreeGarderie, function(errEntreeGarderie, resEntreeGarderie, dataEntreeGarderie) {
+        var currentIdEleve=0;
+        var currentDate=0;
         var jsonEntreeGarderie = JSON.parse(dataEntreeGarderie)['response'];
         for (let i = 0; i < jsonEntreeGarderie.length; i++) {
-            garderie.push({
-                idGarderie: jsonEntreeGarderie[i]['idGarderie'],
-                idEleve: jsonEntreeGarderie[i]['idEleve'],
-                nomEleve: jsonEntreeGarderie[i]['nomEleve'],
-                prenomEleve: jsonEntreeGarderie[i]['prenomEleve'],
-                annee: jsonEntreeGarderie[i]['annee'],
-                dateG: jsonEntreeGarderie[i]['dateoutin'],
-                heure: jsonEntreeGarderie[i]['heure'],
-                outIn: jsonEntreeGarderie[i]['outIn']
-            });
+            if(currentIdEleve == jsonEntreeGarderie[i]['idEleve']){
+                jsonEntreeGarderie[i]['dateoutin']
+            }
+            else{
+                currentIdEleve=jsonEntreeGarderie[i]['idEleve'];
+                garderie.push({
+                    idGarderie: jsonEntreeGarderie[i]['idGarderie'],
+                    idEleve: jsonEntreeGarderie[i]['idEleve'],
+                    nomEleve: jsonEntreeGarderie[i]['nomEleve'],
+                    prenomEleve: jsonEntreeGarderie[i]['prenomEleve'],
+                    annee: jsonEntreeGarderie[i]['annee'],
+                    dateG: jsonEntreeGarderie[i]['dateoutin'],
+                    heure: jsonEntreeGarderie[i]['heure'],
+                    outIn: jsonEntreeGarderie[i]['outIn'],
+                    semaine: {
+                        lundiM:" ",
+                        lundiS:" ",
+                        mardiM:" ",
+                    }
+                });
+            }
         }
         res.render('garderie', {garderieTableau:garderie, dateActuelle:dateChar, heureActuelle:heureChar, listeNoms:eleves});
     });

@@ -6,6 +6,7 @@ const request = require('request');
 const requestListeEleve = require('request');
 var dateChar;
 var heureChar;
+var jour;
 
 //Récupère la date et l'heure du jour
 function temps() {
@@ -17,6 +18,9 @@ function temps() {
     if (day < 10) {
         day = "0" + day;
     }
+    /* jour = currentDate.getDay();
+    console.log(jour);
+     */
     var month = currentDate.getMonth() + 1;
     if (month < 10) {
         month = "0" + month;

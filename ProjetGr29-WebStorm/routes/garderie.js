@@ -6,6 +6,7 @@ const request = require('request');
 const requestListeEleve = require('request');
 var dateChar;
 var heureChar;
+var jour;
 
 //Récupère la date et l'heure du jour
 function temps() {
@@ -17,6 +18,9 @@ function temps() {
     if (day < 10) {
         day = "0" + day;
     }
+    /* jour = currentDate.getDay();
+    console.log(jour);
+     */
     var month = currentDate.getMonth() + 1;
     if (month < 10) {
         month = "0" + month;
@@ -64,31 +68,18 @@ router.get('/', function(req, res){
     };
     var garderie=[];
     request(optionsEntreeGarderie, function(errEntreeGarderie, resEntreeGarderie, dataEntreeGarderie) {
-        var currentIdEleve=0;
-        var currentDate=0;
         var jsonEntreeGarderie = JSON.parse(dataEntreeGarderie)['response'];
         for (let i = 0; i < jsonEntreeGarderie.length; i++) {
-            if(currentIdEleve == jsonEntreeGarderie[i]['idEleve']){
-                jsonEntreeGarderie[i]['dateoutin']
-            }
-            else{
-                currentIdEleve=jsonEntreeGarderie[i]['idEleve'];
-                garderie.push({
-                    idGarderie: jsonEntreeGarderie[i]['idGarderie'],
-                    idEleve: jsonEntreeGarderie[i]['idEleve'],
-                    nomEleve: jsonEntreeGarderie[i]['nomEleve'],
-                    prenomEleve: jsonEntreeGarderie[i]['prenomEleve'],
-                    annee: jsonEntreeGarderie[i]['annee'],
-                    dateG: jsonEntreeGarderie[i]['dateoutin'],
-                    heure: jsonEntreeGarderie[i]['heure'],
-                    outIn: jsonEntreeGarderie[i]['outIn'],
-                    semaine: {
-                        lundiM:" ",
-                        lundiS:" ",
-                        mardiM:" ",
-                    }
-                });
-            }
+            garderie.push({
+                idGarderie: jsonEntreeGarderie[i]['idGarderie'],
+                idEleve: jsonEntreeGarderie[i]['idEleve'],
+                nomEleve: jsonEntreeGarderie[i]['nomEleve'],
+                prenomEleve: jsonEntreeGarderie[i]['prenomEleve'],
+                annee: jsonEntreeGarderie[i]['annee'],
+                dateG: jsonEntreeGarderie[i]['dateoutin'],
+                heure: jsonEntreeGarderie[i]['heure'],
+                outIn: jsonEntreeGarderie[i]['outIn']
+            });
         }
         res.render('garderie', {garderieTableau:garderie, dateActuelle:dateChar, heureActuelle:heureChar, listeNoms:eleves});
     });

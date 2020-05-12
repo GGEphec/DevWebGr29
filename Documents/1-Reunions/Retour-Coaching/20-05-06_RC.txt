@@ -1,1 +1,7 @@
-Sécuriser l'API et ses fonctions plutot que mettre différents droits sur la base de données
+Retour Coaching - 25/03/2020
+----------------------------
+
+-> Sécuriser l'API et ses fonctions plutot que mettre différents droits sur la base de données
+-> Avoir une liste des versions des programmes
+-> Mettre en HTTPS
+-> Avoir un accès distant pour pouvoir faire des maintenances

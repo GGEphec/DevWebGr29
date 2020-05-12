@@ -1,0 +1,1 @@
+Sécuriser l'API et ses fonctions plutot que mettre différents droits sur la base de données

@@ -1,0 +1,10 @@
+Retour Coaching - 29/05/2020
+----------------------------
+
+-> Tests unitaires dans Garderie
+    - Fonction de calcul du temps
+    - Fonction permettant de récupérer la liste des élèves
+
+-> Tests intégrations de l'API à l'aide de Postman
+
+(-> Tests End-to-end)

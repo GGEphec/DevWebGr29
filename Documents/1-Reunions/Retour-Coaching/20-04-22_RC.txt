@@ -1,0 +1,11 @@
+Retour Coaching - 22/04/2020
+----------------------------
+
+-> Retour des Users Stories
+    US non conforme à ce qui était attendu.
+    - Clairement identifier l'ordre d'importance des US à l'aide de numéros.
+    - Déterminer dans les US le Front-End et le Back-End.
+    - Lien vers les screenshots.
+    - Différencier ce qui est un plus pour l'utilisateur de ce qui est une réelle fonctionnalité de base.
+    - Plus détailler dans le Trello.
+    - Mettre les liens avec les fonctions de l'API.

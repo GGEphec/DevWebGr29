@@ -25,8 +25,6 @@ router.get('/login', function(req,res,next){
 //Retourne la liste du/des élève(s)
 router.get('/eleves', function(req, res, next) {
     var eleve_id = req.query.id;
-    var eleve_name = req.query.name;
-    var eleve_surname = req.query.surname;
 
     if (typeof eleve_id != "undefined") { //Récupération d'un élève sur base de son id
         res.locals.connection.query('SELECT idEleve, nomEleve, prenomEleve, date_format(naissance, "%Y-%m-%d") as naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes WHERE idEleve = ? ORDER BY nomEleve' ,[eleve_id], function (error, results, fields) {

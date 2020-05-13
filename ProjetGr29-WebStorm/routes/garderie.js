@@ -13,7 +13,6 @@ function temps() {
     var ts = Date.now();
 
     var currentDate = new Date(ts);
-    console.log(currentDate);
     var day = currentDate.getDate();
     if (day < 10) {
         day = "0" + day;
@@ -42,6 +41,7 @@ function temps() {
 router.get('/', function(req, res){
     temps();
 
+
     //Constante liste élèves
     var eleves=[];
     const optionListeEleve = {
@@ -50,7 +50,7 @@ router.get('/', function(req, res){
     };
     requestListeEleve(optionListeEleve, function(errListeEleve, resListeEleve, dataListeEleve) {
         var jsonListeEleve = JSON.parse(dataListeEleve)['response'];
-        for (let i = 0; i < jsonListeEleve.length; i++) {
+        for (let i = 1; i < jsonListeEleve.length; i++) {
             eleves.push({
                 id: jsonListeEleve[i]['idEleve'],
                 nom: jsonListeEleve[i]['nomEleve'],

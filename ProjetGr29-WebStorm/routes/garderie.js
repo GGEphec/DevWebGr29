@@ -6,14 +6,14 @@ const request = require('request');
 const requestListeEleve = require('request');
 var dateChar;
 var heureChar;
-var jour;
+var semaineCharDebut;
+var semaineCharFin;
 
 //Récupère la date et l'heure du jour
 function temps() {
     var ts = Date.now();
 
     var currentDate = new Date(ts);
-    console.log(currentDate);
     var day = currentDate.getDate();
     if (day < 10) {
         day = "0" + day;
@@ -25,6 +25,8 @@ function temps() {
     }
     var year = currentDate.getFullYear();
     dateChar = year + "-" + month + "-" + day;
+    semaineCharDebut = year+ "-" + month + "-" + (day-currentDate.getDay());
+    semaineCharFin = year+ "-" + month + "-" + (day-currentDate.getDay()+4);
 
     var heure = currentDate.getHours();
     if (heure < 10) {
@@ -41,6 +43,23 @@ function temps() {
 
 router.get('/', function(req, res){
     temps();
+    var semaineDemandee = req.query.semaine;
+    var semaineAfficheeDebut;
+    var semaineAfficheeFin;
+    if(typeof semaineDemandee!="undefined") {
+        var jourDemande = new Date(semaineDemandee);
+        var jourSemaine = jourDemande.getDate();
+        var yearSemaine = jourDemande.getFullYear();
+        var monthSemaine = jourDemande.getMonth()+1;
+        semaineAfficheeDebut = yearSemaine + '-' + monthSemaine + '-' + (jourSemaine-jourDemande.getDay());
+        semaineAfficheeFin = yearSemaine + '-' + monthSemaine + '-' + (jourSemaine-jourDemande.getDay()+4);
+
+    }
+    else{
+        semaineAfficheeDebut = semaineCharDebut;
+        semaineAfficheeFin = semaineCharFin;
+    }
+
 
     //Constante liste élèves
     var eleves=[];
@@ -50,7 +69,7 @@ router.get('/', function(req, res){
     };
     requestListeEleve(optionListeEleve, function(errListeEleve, resListeEleve, dataListeEleve) {
         var jsonListeEleve = JSON.parse(dataListeEleve)['response'];
-        for (let i = 0; i < jsonListeEleve.length; i++) {
+        for (let i = 1; i < jsonListeEleve.length; i++) {
             eleves.push({
                 id: jsonListeEleve[i]['idEleve'],
                 nom: jsonListeEleve[i]['nomEleve'],
@@ -61,7 +80,7 @@ router.get('/', function(req, res){
 
     // Affichage le tableau de la garderie
     const optionsEntreeGarderie = {
-        url : 'http://localhost:3000/api/v1/garderie',
+        url : 'http://localhost:3000/api/v1/garderie?semaine='+semaineAfficheeDebut+'&finSemaine='+semaineAfficheeFin,
         method : 'GET'
     };
     var garderie=[];

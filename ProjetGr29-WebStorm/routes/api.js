@@ -25,8 +25,6 @@ router.get('/login', function(req,res,next){
 //Retourne la liste du/des élève(s)
 router.get('/eleves', function(req, res, next) {
     var eleve_id = req.query.id;
-    var eleve_name = req.query.name;
-    var eleve_surname = req.query.surname;
 
     if (typeof eleve_id != "undefined") { //Récupération d'un élève sur base de son id
         res.locals.connection.query('SELECT idEleve, nomEleve, prenomEleve, date_format(naissance, "%Y-%m-%d") as naissance, nationalite, eleves.idClasse as idClasse, annee, parent1Id, parent2Id from eleves NATURAL JOIN classes WHERE idEleve = ? ORDER BY nomEleve' ,[eleve_id], function (error, results, fields) {
@@ -119,7 +117,11 @@ router.post('/parent', function (req, res, next) {
 //Récupération des entrées dans la table garderie
 //Retourne les entrées //TODO pour la période sélectionnée
 router.get('/garderie', function (req, res, next) { //TODO ajouter des contraintes de date
-    res.locals.connection.query('SELECT idGarderie, garderie.idEleve, nomEleve, prenomEleve, annee, jour, DATE_FORMAT(dateoutin, "%d/%m/%Y") as dateoutin, heure, outIn FROM garderie NATURAL JOIN eleves NATURAL JOIN classes ORDER BY garderie.idEleve ASC, dateoutin ASC, heure ASC', function (error, results, fields) {
+    var lundi = req.query.semaine;
+    var vendredi = req.query.finSemaine;
+    console.log(lundi);
+    console.log(vendredi);
+    res.locals.connection.query('SELECT idGarderie, garderie.idEleve, nomEleve, prenomEleve, annee, jour, DATE_FORMAT(dateoutin, "%d/%m/%Y") as dateoutin, heure, outIn FROM garderie NATURAL JOIN eleves NATURAL JOIN classes WHERE dateoutin BETWEEN ? AND ? ORDER BY garderie.idEleve ASC, dateoutin ASC, heure ASC', [lundi, vendredi], function (error, results, fields) {
         if (error!=null) {
             res.redirect(529, '/error');
         }

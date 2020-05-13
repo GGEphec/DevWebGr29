@@ -18,9 +18,7 @@ function temps() {
     if (day < 10) {
         day = "0" + day;
     }
-    /* jour = currentDate.getDay();
-    console.log(jour);
-     */
+
     var month = currentDate.getMonth() + 1;
     if (month < 10) {
         month = "0" + month;
@@ -69,21 +67,80 @@ router.get('/', function(req, res){
     var garderie=[];
     request(optionsEntreeGarderie, function(errEntreeGarderie, resEntreeGarderie, dataEntreeGarderie) {
         var jsonEntreeGarderie = JSON.parse(dataEntreeGarderie)['response'];
+        var currentId = 0;
+        var currentGarderie = -1;
         for (let i = 0; i < jsonEntreeGarderie.length; i++) {
-            garderie.push({
-                idGarderie: jsonEntreeGarderie[i]['idGarderie'],
-                idEleve: jsonEntreeGarderie[i]['idEleve'],
-                nomEleve: jsonEntreeGarderie[i]['nomEleve'],
-                prenomEleve: jsonEntreeGarderie[i]['prenomEleve'],
-                annee: jsonEntreeGarderie[i]['annee'],
-                dateG: jsonEntreeGarderie[i]['dateoutin'],
-                heure: jsonEntreeGarderie[i]['heure'],
-                outIn: jsonEntreeGarderie[i]['outIn']
-            });
+            if (currentId == jsonEntreeGarderie[i]['idEleve']) {
+                switch (jsonEntreeGarderie[i]['jour']) {
+                    case 1:
+                        if (jsonEntreeGarderie[i]["heure"] < "12:00") {
+                            garderie[currentGarderie]['jour']['LundiM'] = jsonEntreeGarderie[i]["heure"];
+                        }
+                        else {
+                            garderie[currentGarderie]['jour']['LundiS'] = jsonEntreeGarderie[i]["heure"];
+                        }
+                        break;
+                    case 2:
+                        if (jsonEntreeGarderie[i]["heure"] < "12:00") {
+                            garderie[currentGarderie]['jour']['MardiM'] = jsonEntreeGarderie[i]["heure"];
+                        }
+                        else {
+                            garderie[currentGarderie]['jour']['MardiS'] = jsonEntreeGarderie[i]["heure"];
+                        }
+                        break;
+                    case 3:
+                        if (jsonEntreeGarderie[i]["heure"] < "12:00") {
+                            garderie[currentGarderie]['jour']['MercrediM'] = jsonEntreeGarderie[i]["heure"];
+                        }
+                        else {
+                            garderie[currentGarderie]['jour']['MercrediS'] = jsonEntreeGarderie[i]["heure"];
+                        }
+                        break;
+                    case 4:
+                        if (jsonEntreeGarderie[i]["heure"] < "12:00") {
+                            garderie[currentGarderie]['jour']['JeudiM'] = jsonEntreeGarderie[i]["heure"];
+                        }
+                        else {
+                            garderie[currentGarderie]['jour']['JeudiS'] = jsonEntreeGarderie[i]["heure"];
+                        }
+                        break;
+                    case 5:
+                        if (jsonEntreeGarderie[i]["heure"] < "12:00") {
+                            garderie[currentGarderie]['jour']['VendrediM'] = jsonEntreeGarderie[i]["heure"];
+                        }
+                        else {
+                            garderie[currentGarderie]['jour']['VendrediS'] = jsonEntreeGarderie[i]["heure"];
+                        }
+                        break;
+                }
+            }
+            else {
+                currentId = jsonEntreeGarderie[i]['idEleve'];
+                garderie.push({
+                    nomEleve: jsonEntreeGarderie[i]['nomEleve'],
+                    prenomEleve: jsonEntreeGarderie[i]['prenomEleve'],
+                    annee: jsonEntreeGarderie[i]['annee'],
+                    jour: {
+                        LundiM: "/",
+                        LundiS: "/",
+                        MardiM: "/",
+                        MardiS: "/",
+                        MercrediM: "/",
+                        MercrediS: "/",
+                        JeudiM: "/",
+                        JeudiS: "/",
+                        VendrediM: "/",
+                        VendrediS: "/"
+                    }
+                });
+                i--;    //Revient au nouvel élève pour compléter le tableau "jour"
+                currentGarderie++;      //Incrémente l'idGarderie pour parcourir le tableau qu'on envoit
+            }
         }
         res.render('garderie', {garderieTableau:garderie, dateActuelle:dateChar, heureActuelle:heureChar, listeNoms:eleves});
     });
 });
+
 
 module.exports = router;
 

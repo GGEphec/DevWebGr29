@@ -119,7 +119,7 @@ router.post('/parent', function (req, res, next) {
 //Récupération des entrées dans la table garderie
 //Retourne les entrées //TODO pour la période sélectionnée
 router.get('/garderie', function (req, res, next) { //TODO ajouter des contraintes de date
-    res.locals.connection.query('SELECT idGarderie, garderie.idEleve, nomEleve, prenomEleve, annee, DATE_FORMAT(dateoutin, "%d/%m/%Y") as dateoutin, heure, outIn FROM garderie NATURAL JOIN eleves NATURAL JOIN classes ORDER BY garderie.idEleve ASC, dateoutin ASC, heure ASC', function (error, results, fields) {
+    res.locals.connection.query('SELECT idGarderie, garderie.idEleve, nomEleve, prenomEleve, annee, jour, DATE_FORMAT(dateoutin, "%d/%m/%Y") as dateoutin, heure, outIn FROM garderie NATURAL JOIN eleves NATURAL JOIN classes ORDER BY garderie.idEleve ASC, dateoutin ASC, heure ASC', function (error, results, fields) {
         if (error!=null) {
             res.redirect(529, '/error');
         }
@@ -131,8 +131,8 @@ router.get('/garderie', function (req, res, next) { //TODO ajouter des contraint
 
 //Ajout d'une entrée dans la table garderie
 router.post('/garderie', function (req,res,next) {
-    console.log(req.body);
-    res.locals.connection.query('INSERT INTO garderie(idEleve,dateoutin,heure,outin) VALUES (?,?,?,?)', [req.body.idEleve, req.body.dateoutin, req.body.heure, req.body.outin], function (error, result) {
+    var jour = new Date(req.body.dateoutin).getDay();
+    res.locals.connection.query('INSERT INTO garderie(idEleve,jour,dateoutin,heure,outin) VALUES (?,?,?,?,?)', [req.body.idEleve, jour, req.body.dateoutin, req.body.heure, req.body.outin], function (error, result) {
         if (error!=null) {
             res.redirect(529, '/error');
         }

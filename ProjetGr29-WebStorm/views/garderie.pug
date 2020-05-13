@@ -33,31 +33,32 @@ body
             for eleves in listeNoms
                 option(value=eleves.id) #{eleves.nom} #{eleves.prenom}
         label(for'dateoutin') Date:
-        input(type='date' id='dateoutin' placeholder='Date' name='dateoutin' value=dateActuelle)
+        input(type='date' max=dateActuelle id='dateoutin' placeholder='Date' name='dateoutin' value=dateActuelle)
         label(for='heure') Heure:
         input(type='time' id='heure' placeholder='Hour' name='heure' value=heureActuelle)
         select(id='outin' name='outin')
-            option(value='In') In
-            option(value='Out') Out
+            option(value='In') Arrivée
+            option(value='Out') Départ
         input(type='submit' value='Enregistrer')
     br
     table#tableGarderie
         tr
-            th idGarderie
             th Nom
             th Prénom
             th Annee
-            th Date
-            th Heure
-            th In/Out
+            th Lundi
+            th Mardi
+            th Mercredi
+            th Jeudi
+            th Vendredi
         tbody
             each line in garderieTableau
                 tr
-                    td= line.idGarderie
                     td= line.nomEleve
                     td= line.prenomEleve
                     td= line.annee
-                    td= line.dateG
-                    td= line.heure
-                    td= line.outIn
-
+                    td= line.jour.LundiM + "-" + line.jour.LundiS
+                    td= line.jour.MardiM + " - " + line.jour.MardiS
+                    td= line.jour.MercrediM + " - " + line.jour.MercrediS
+                    td= line.jour.JeudiM + " - " + line.jour.JeudiS
+                    td= line.jour.VendrediM + " - " + line.jour.VendrediS

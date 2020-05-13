@@ -124,6 +124,7 @@ router.get('/garderie', function (req, res, next) { //TODO ajouter des contraint
             res.redirect(529, '/error');
         }
         else {
+            console.log(results);
             res.send({"status": 200, "error": null, "response": results});
         }
     });

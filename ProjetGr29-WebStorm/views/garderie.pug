@@ -43,21 +43,34 @@ body
     br
     table#tableGarderie
         tr
-            th idGarderie
             th Nom
             th Prénom
             th Annee
-            th Date
-            th Heure
-            th In/Out
+            th Lundi M
+            th Lundi S
+            th Mardi M
+            th Mardi S
+            th Mercredi M
+            th Mercredi S
+            th Jeudi M
+            th Jeudi S
+            th Vendredi M
+            th Vendredi S
         tbody
             each line in garderieTableau
                 tr
-                    td= line.idGarderie
                     td= line.nomEleve
                     td= line.prenomEleve
                     td= line.annee
-                    td= line.dateG
-                    td= line.heure
-                    td= line.outIn
+                    td= line.jour.LundiM
+                    td= line.jour.LundiS
+                    td= line.jour.MardiM
+                    td= line.jour.MardiS
+                    td= line.jour.MercrediM
+                    td= line.jour.MercrediS
+                    td= line.jour.JeudiM
+                    td= line.jour.JeudiS
+                    td= line.jour.VendrediM
+                    td= line.jour.VendrediS
+
 

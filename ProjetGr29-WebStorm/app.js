@@ -6,6 +6,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql');
+var session_check = require("./routes/middleware");
 
 //Les différentes routes que l'on va utiliser
 var usersRouter = require('./routes/users');
@@ -15,6 +16,7 @@ var garderieRouter = require('./routes/garderie');
 var secretariatRouter = require('./routes/secretariat');
 var eleveRouter = require('./routes/eleve');
 var errorRouter = require('./routes/error');
+
 
 var app = express();
 
@@ -46,9 +48,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/login', loginRouter);
 app.use('/api/v1/', apiRouter);
 app.use('/users', usersRouter);
-app.use('/garderie', garderieRouter);
-app.use('/secretariat', secretariatRouter);
-app.use('/eleve', eleveRouter);
+app.use('/garderie',session_check, garderieRouter);
+app.use('/secretariat',session_check, secretariatRouter);
+app.use('/eleve',session_check, eleveRouter);
 app.use('/error', errorRouter);
 
 

@@ -12,6 +12,37 @@ a {
     list-style: none;
     text-decoration:none;
 }
+table{
+    width:90%;
+    margin : 5%;
+    padding : 5%;
+}
+/*BUTTON*/
+.in {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width : 97%;
+}
+.in2 {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 
 
 /*HEADER*/

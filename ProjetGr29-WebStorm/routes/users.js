@@ -7,7 +7,7 @@ var url = require('url');
 var request = require('request');
 var querystring = require('querystring');
 const jwt = require("jsonwebtoken");
-
+var json;
 
 router.get('/', function(req, res) {
 
@@ -23,11 +23,12 @@ router.get('/', function(req, res) {
         method: 'GET'
     };
     request(option2, function (err, res2, results){
-        var json = JSON.parse(results)['response'];
+       json = JSON.parse(results)['response'];
         console.log('json ' +json)
         jwt.verify(json, 'secretKey', function(err, decoded){
             if(!err){
                 console.log("no error on token")
+
             } else {
                 res.send('token issue');
             }

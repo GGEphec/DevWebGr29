@@ -1,12 +1,12 @@
-var express = require('express');
+var users = require('./api');
 
-
-module.exports = function (req, res, next) {
-    var token = 'x'
-    if(token){
-    next()
-        }
-        else{
-        res.redirect('/login')
-        }
+module.exports = function tokenCreate (req, res, next) {
+    var token = 's';
+    console.log('s ' + token)
+    if(token == 's'){
+        next();
+    }
+    else{
+        res.redirect('/login');
+    }
 }

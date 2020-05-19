@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
 
+
 //Vérification de l'identifiant et du mot de passe dans la base de donnée
 //Retourne les droits de la personne s'étant connectée
 router.get('/login', function(req,res,next){
@@ -26,12 +27,13 @@ router.get('/login', function(req,res,next){
 router.get('/token',function (req,res,next) {
     var username = req.query.username;
     var password = req.query.password;
-    var token = jwt.sign({ password, username}, 'secretKey',{expiresIn: 120},(err,token) => {
+    var tokn = jwt.sign({ password, username}, 'secretKey',{expiresIn: 120},(err,tokn) => {
         res.locals.connection.query('SELECT * FROM utilisateurs WHERE login = ? and motDePasse = ?', [username, password], function (error, results, fields) {
             if (error != null) {
                 res.redirect(529, '/error');
             } else {
-                res.send({"status": 200, "error": null, "response": token})
+                exports.tokn = tokn;
+                res.send({"status": 200, "error": null, "response": tokn})
             }
         });
     })

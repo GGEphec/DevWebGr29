@@ -1,28 +1,13 @@
 head
     meta(charset='UTF-8')
     title Garderie
-    style.
-        body {
-            margin-left: 10px;
-        }
-        form input {
-            margin: 5px;
-        }
-        table, th, td {
-            border:solid black 2px;
-            padding: 2px;
-            border-collapse: collapse;
-        }
-        th {
-            background-color: #00B7FF;
-        }
     link(rel='stylesheet', href='/stylesheets/style.css')
 body
     header.header
         img.headerLogo(src='/logo/logo.png')
         h1.headerText Ecole de Ath
         form.headerDeco(action='login' method='GET')
-            input(type='submit' value='Se déconnecter')
+            input(class="in2" type='submit' value='Se déconnecter')
 
 
     h1 Ajout d'une entrée ou sortie de la garderie
@@ -33,14 +18,13 @@ body
             for eleves in listeNoms
                 option(value=eleves.id) #{eleves.nom} #{eleves.prenom}
         label(for'dateoutin') Date:
-        input(type='date' max=dateActuelle id='dateoutin' placeholder='Date' name='dateoutin' value=dateActuelle)
+        input( type='date' max=dateActuelle id='dateoutin' placeholder='Date' name='dateoutin' value=dateActuelle)
         label(for='heure') Heure:
-        input(type='time' id='heure' placeholder='Hour' name='heure' value=heureActuelle)
+        input( type='time' id='heure' placeholder='Hour' name='heure' value=heureActuelle)
         select(id='outin' name='outin')
             option(value='In') Arrivée
             option(value='Out') Départ
-        input(type='submit' value='Enregistrer')
-    br
+        input( type='submit' value='Enregistrer')
     table#tableGarderie
         tr
             th Nom

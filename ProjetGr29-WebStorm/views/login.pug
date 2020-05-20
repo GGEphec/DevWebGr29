@@ -1,14 +1,13 @@
 head
     meta(charset='utf-8')
     title Login
-    style.
     link(rel='stylesheet', href='/stylesheets/style.css')
 body
     header.header
         img.headerLogo(src='/logo/logo.png')
         h1.headerText Ecole de Ath
         form.headerDeco(action='login' method='GET')
-            input(type='submit' value='Se déconnecter')
+            input(class="in2" type='submit' value='Se déconnecter')
 
     .login-form
         h1 Plateforme de Connexion
@@ -16,4 +15,3 @@ body
             input(type='text', name='username',id='username', placeholder='Utilisateur', required='')
             input(type='password', name='password', id ='password', placeholder='Mot de passe', required='')
             input(type='submit' value='Se connecter')
-

@@ -1,0 +1,9 @@
+Retour Coaching - 20/05/2020
+----------------------------
+
+-> Gestion d'erreurs lors d'un crash de la DB par exemple.
+Gérer l'erreur du "res.render" qui ne renvoit pas d'erreur.
+
+-> Compléter API avec "/login" et ses spécifications
+
+-> NE PLUS TOUCHER AU GIT après le 27/05!

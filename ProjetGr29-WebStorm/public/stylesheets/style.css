@@ -1,3 +1,45 @@
+h1{
+    margin: 1%;
+    text-shadow: -1px -1px #fb6;
+    font-family:"Segoe print", Arial, Helvetica, sans-serif;
+}
+button{
+    display: block;
+}
+p{
+    text-align: center;
+}
+form input{
+    margin: 0.6%
+}
+hr{
+    margin: 1% 0% 1% 0%;
+}
+#formparent1,#formparent2,#formEleve{
+    border: solid black 2px;
+    padding: 0.5% 0% 0.5% 0%;
+    margin: 1%;
+}
+#formEleve{
+    width: 40%;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+form {
+    margin : 1%;
+    text-align: center;
+}
+table, th, td {
+    border:thin solid #6495ed ;
+    padding: 2px;
+    border-collapse: collapse;
+    text-align: center;
+}
+th {
+    background-color: #87CEFA;
+}
 body {
     /*padding: 50px;*/
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -12,12 +54,59 @@ a {
     list-style: none;
     text-decoration:none;
 }
+table{
+    width:98%;
+    margin : 1%;
+}
+section{
+    padding: 1%;
+}
+tr:hover {
+    background: azure;
+}
+#parent1{
+    float: left;
+    width: 49%;
+    overflow: hidden;
+
+}
+#parent2{
+    float: right;
+    width: 49%;
+    overflow: hidden;
+}
+/*BUTTON*/
+.in {
+    background-color: lightslategrey ;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width : 98%;
+}
+.in2 {
+    background-color: lightslategrey ;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 
 
 /*HEADER*/
 .header{
     width: 100%;
-    height:60px;
+    height:70px;
     display: inline-block;
     background-color: #101010;
 }
@@ -28,7 +117,7 @@ a {
 .headerText{
     text-align: center;
     margin: 1%;
-    height: 80%;
+    height: 70%;
     color: white;
 }
 .headerDeco{

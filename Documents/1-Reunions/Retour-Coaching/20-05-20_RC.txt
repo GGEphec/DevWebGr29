@@ -7,3 +7,7 @@ Gérer l'erreur du "res.render" qui ne renvoit pas d'erreur.
 -> Compléter API avec "/login" et ses spécifications
 
 -> NE PLUS TOUCHER AU GIT après le 27/05!
+
+-> Pattern "secretariat Eleves"
+
+-> ...

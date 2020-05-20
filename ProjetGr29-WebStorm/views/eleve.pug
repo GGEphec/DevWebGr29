@@ -1,35 +1,5 @@
 head
     meta(charset='UTF-8')
-    style.
-        form{
-            line-height: 1.5em;
-        }
-        div{
-            border: solid black 2px;
-            padding: 2px;
-            margin: 2px;
-        }
-        #parent1{
-            float: left;
-            width: 48.5%;
-            overflow: hidden;
-        }
-        #parent2{
-            float: right;
-            width: 48.5%;
-            overflow: hidden;
-        }
-        p{
-            text-align: center;
-        }
-        button{
-            display: block;
-        }
-        input {
-            width: fit-content;
-            margin: 2px 2px 2px 5px;
-            padding-left: 4px;
-        }
     link(rel='stylesheet', href='/stylesheets/style.css')
 
 body
@@ -37,12 +7,14 @@ body
         img.headerLogo(src='/logo/logo.png')
         h1.headerText Ecole de Ath
         form.headerDeco(action='login' method='GET')
-            input(type='submit' value='Se déconnecter')
+            input(class='in2' type='submit' value='Se déconnecter')
 
     br
     br
     title #eleve
     form#formEleve(method='POST' action='api/v1/eleve')
+        p Elève
+            hr(color='black')
         label Nom :
         input(type='text' name='formEleveNom' value=donneeEleve[2][0]['nomEleve'])
         br
@@ -62,7 +34,7 @@ body
         input(type='hidden' name='formEleveId' value=donneeEleve[2][0]['idEleve'])
         input(type='hidden' name='formEleveP1' value=donneeEleve[1][0]['idParent'])
         input(type='hidden' name='formEleveP2' value=donneeEleve[0][0]['idParent'])
-        button(type='submit') Enregistrer
+        button(class ="in2" type='submit') Enregistrer
     #parent1
         form#formParent1(method='POST' action='api/v1/parent')
             p Parent 1
@@ -86,7 +58,7 @@ body
             input(type='text' name='formParentEmail' value=donneeEleve[1][0]['email'])
             br
             input(type='hidden' name='formParentId' value=donneeEleve[1][0]['idParent'])
-            button(type='submit') Enregistrer
+            button(class="in2" type='submit') Enregistrer
     #parent2
         form#formParent2(method='POST' action='api/v1/parent')
             p Parent 2
@@ -110,6 +82,6 @@ body
             input(type='text' name='formParentEmail' value=donneeEleve[0][0]['email'])
             br
             input(type='hidden' name='formParentId' value=donneeEleve[0][0]['idParent'])
-            button(type='submit') Enregistrer
+            button(class="in2" type='submit') Enregistrer
     form(action='secretariat' method='GET')
-        input(type='submit' value='Retour')
+        input(class="in2" type='submit' value='Retour')

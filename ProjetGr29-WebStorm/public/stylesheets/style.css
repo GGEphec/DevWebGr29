@@ -3,9 +3,30 @@ h1{
     text-shadow: -1px -1px #fb6;
     font-family:"Segoe print", Arial, Helvetica, sans-serif;
 }
+button{
+    display: block;
+}
+p{
+    text-align: center;
+}
 form input{
+   margin: 0.6%
+}
+hr{
+    margin: 1% 0% 1% 0%;
+}
+#formparent1,#formparent2,#formEleve{
+    border: solid black 2px;
+    padding: 0.5% 0% 0.5% 0%;
     margin: 1%;
 }
+#formEleve{
+    width: 40%;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
 form {
     margin : 1%;
     text-align: center;
@@ -42,6 +63,17 @@ section{
 }
 tr:hover {
     background: azure;
+}
+#parent1{
+    float: left;
+    width: 49%;
+    overflow: hidden;
+
+}
+#parent2{
+    float: right;
+    width: 49%;
+    overflow: hidden;
 }
 /*BUTTON*/
 .in {

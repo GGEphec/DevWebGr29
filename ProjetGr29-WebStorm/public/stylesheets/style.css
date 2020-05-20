@@ -1,3 +1,24 @@
+h1{
+    margin: 1%;
+    text-shadow: -1px -1px #fb6;
+    font-family:"Segoe print", Arial, Helvetica, sans-serif;
+}
+form input{
+    margin: 1%;
+}
+form {
+    margin : 1%;
+    text-align: center;
+}
+table, th, td {
+    border:thin solid #6495ed ;
+    padding: 2px;
+    border-collapse: collapse;
+    text-align: center;
+}
+th {
+    background-color: #87CEFA;
+}
 body {
     /*padding: 50px;*/
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -13,13 +34,18 @@ a {
     text-decoration:none;
 }
 table{
-    width:90%;
-    margin : 5%;
-    padding : 5%;
+    width:98%;
+    margin : 1%;
+}
+section{
+    padding: 1%;
+}
+tr:hover {
+    background: azure;
 }
 /*BUTTON*/
 .in {
-    background-color: #4CAF50;
+    background-color: lightslategrey ;
     border: none;
     color: white;
     padding: 10px 25px;
@@ -29,10 +55,10 @@ table{
     font-size: 12px;
     margin: 4px 2px;
     cursor: pointer;
-    width : 97%;
+    width : 98%;
 }
 .in2 {
-    background-color: #4CAF50;
+    background-color: lightslategrey ;
     border: none;
     color: white;
     padding: 10px 25px;
@@ -48,7 +74,7 @@ table{
 /*HEADER*/
 .header{
     width: 100%;
-    height:60px;
+    height:70px;
     display: inline-block;
     background-color: #101010;
 }
@@ -59,7 +85,7 @@ table{
 .headerText{
     text-align: center;
     margin: 1%;
-    height: 80%;
+    height: 70%;
     color: white;
 }
 .headerDeco{

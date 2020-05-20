@@ -57,11 +57,11 @@ router.get('/', function(req, res) {
                     res.redirect('/garderie');
                     break;
                 default:
-                    res.send("Vous n'avez pas d'espace de travail")
+                    res.render('error', {message:err});
             }
         } else {
 
-            res.send('Incorrect Username and/or Password!');
+            res.render('error', {message:err});
         }
     });
 

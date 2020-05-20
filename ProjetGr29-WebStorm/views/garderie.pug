@@ -1,21 +1,6 @@
 head
     meta(charset='UTF-8')
     title Garderie
-    style.
-        body {
-            margin-left: 10px;
-        }
-        form input {
-            margin: 5px;
-        }
-        table, th, td {
-            border:solid black 2px;
-            padding: 2px;
-            border-collapse: collapse;
-        }
-        th {
-            background-color: #00B7FF;
-        }
     link(rel='stylesheet', href='/stylesheets/style.css')
 body
     header.header
@@ -40,7 +25,6 @@ body
             option(value='In') Arrivée
             option(value='Out') Départ
         input( type='submit' value='Enregistrer')
-    br
     table#tableGarderie
         tr
             th Nom

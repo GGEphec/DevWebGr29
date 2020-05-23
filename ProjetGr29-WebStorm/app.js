@@ -28,7 +28,7 @@ app.use(function (req, res, next) {
     });
     res.locals.connection.connect(function(error){
         if(error){
-            res.render('error', {message:"Impossible de se connecter à la base de donnée"});
+            res.render('error', {message:"Impossible de se connecter à la base de données"});
         }
         else {
             //res.locals.connection.connect();

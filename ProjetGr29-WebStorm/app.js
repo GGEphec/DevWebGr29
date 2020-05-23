@@ -26,9 +26,15 @@ app.use(function (req, res, next) {
         password : '',
         database : 'ecole' //TODO remettre la base de base
     });
-    res.locals.connection.connect();
-    next();
-
+    res.locals.connection.connect(function(error){
+        if(error){
+            res.render('error', {message:"Impossible de se connecter à la base de donnée"});
+        }
+        else {
+            //res.locals.connection.connect();
+            next();
+        }
+    });
 });
 
 // view engine setup

@@ -22,8 +22,8 @@ var app = express();
 app.use(function (req, res, next) {
     res.locals.connection = mysql.createConnection({
         host     : 'localhost',
-        user     : 'root',
-        password : '',
+        user     : 'ecole',
+        password : 'ecole',
         database : 'ecole' //TODO remettre la base de base
     });
     res.locals.connection.connect(function(error){

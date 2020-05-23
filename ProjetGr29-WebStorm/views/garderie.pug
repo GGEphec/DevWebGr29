@@ -46,3 +46,8 @@ body
                     td= line.jour.MercrediM + " - " + line.jour.MercrediS
                     td= line.jour.JeudiM + " - " + line.jour.JeudiS
                     td= line.jour.VendrediM + " - " + line.jour.VendrediS
+
+    form(method='GET', action='garderie?'+semaine)
+        label(for='semaine') Voir les données d'une semaine précédente contenant la date :
+        input(name='semaine' id= 'semaine' type='date' max=dateActuelle value=semaineAfficheeDebut)
+        input(type='submit' value='Voir')

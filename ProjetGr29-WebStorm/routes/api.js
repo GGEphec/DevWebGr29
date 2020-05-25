@@ -2,6 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
+const jwt = require('jsonwebtoken');
 
 
 //Vérification de l'identifiant et du mot de passe dans la base de donnée
@@ -9,17 +10,47 @@ var router = express.Router();
 router.get('/login', function(req,res,next){
     var username = req.query.username;
     var password = req.query.password;
+
     if (username && password) {
+
         res.locals.connection.query('SELECT * FROM utilisateurs WHERE login = ? and motDePasse = ?', [username,password], function(error, results, fields) {
             if (error!=null) {
                 res.redirect(529, '/error');
             }
             else {
                 res.send({"status": 200, "error": null, "response": results});
+
             }
         });
     }
 });
+router.get('/middle',function (req,res,next) {
+        res.locals.connection.query('SELECT * FROM token', function (error, results, fields) {
+            if (error != null) {
+                res.redirect(529, '/error');
+            } else {
+                res.send({"status": 200, "error": null,"response": results});
+            }
+        });
+
+})
+
+router.get('/token',function (req,res,next) {
+    var username = req.query.username;
+    var password = req.query.password;
+    var tokn = jwt.sign({ password, username}, 'secretKey',{expiresIn: 120},(err,tokn) => {
+        res.locals.connection.query('SELECT * FROM utilisateurs WHERE login = ? and motDePasse = ?', [username, password], function (error, results, fields) {
+            if (error != null) {
+                res.redirect(529, '/error');
+            } else {
+                exports.tokn = tokn;
+                res.send({"status": 200, "error": null, "response": tokn})
+                res.locals.connection.query('INSERT INTO Token(token) Values (?)', [tokn])
+            }
+        });
+    })
+
+})
 
 //Récupération du/des élève(s) selon un ou plusieurs critères
 //Retourne la liste du/des élève(s)

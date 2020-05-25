@@ -19,10 +19,21 @@ router.get('/login', function(req,res,next){
             }
             else {
                 res.send({"status": 200, "error": null, "response": results});
+
             }
         });
     }
 });
+router.get('/middle',function (req,res,next) {
+        res.locals.connection.query('SELECT * FROM token', function (error, results, fields) {
+            if (error != null) {
+                res.redirect(529, '/error');
+            } else {
+                res.send({"status": 200, "error": null,"response": results});
+            }
+        });
+
+})
 
 router.get('/token',function (req,res,next) {
     var username = req.query.username;
@@ -34,6 +45,7 @@ router.get('/token',function (req,res,next) {
             } else {
                 exports.tokn = tokn;
                 res.send({"status": 200, "error": null, "response": tokn})
+                res.locals.connection.query('INSERT INTO Token(token) Values (?)', [tokn])
             }
         });
     })

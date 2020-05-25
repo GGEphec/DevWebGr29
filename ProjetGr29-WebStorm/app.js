@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql');
 var session_check = require("./routes/middleware");
+var session_check2 = require("./routes/middleware2");
 
 
 //Les différentes routes que l'on va utiliser
@@ -49,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/login', loginRouter);
 app.use('/api/v1/', apiRouter);
 app.use('/users', usersRouter);
-app.use('/garderie',session_check, garderieRouter);
+app.use('/garderie',session_check2, garderieRouter);
 app.use('/secretariat',session_check, secretariatRouter);
 app.use('/eleve',session_check, eleveRouter);
 app.use('/error', errorRouter);

@@ -6,6 +6,7 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
     res.render('login');
+    res.locals.connection.query('DELETE FROM token');
 });
 
 module.exports = router;

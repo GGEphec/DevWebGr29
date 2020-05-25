@@ -24,7 +24,7 @@ router.get('/', function(req, res) {
     };
     request(option2, function (err, res2, results){
        json = JSON.parse(results)['response'];
-        console.log('json ' +json)
+
         jwt.verify(json, 'secretKey', function(err, decoded){
             if(!err){
                 console.log("no error on token")
@@ -57,11 +57,11 @@ router.get('/', function(req, res) {
                     res.redirect('/garderie');
                     break;
                 default:
-                    res.render('error', {message:err});
+                    res.render('error', {message:'Mot de passe ou Utilisateur Incorrect'});
             }
         } else {
 
-            res.render('error', {message:err});
+            res.render('error', {message:'Mot de passe ou Utilisateur Incorrect'});
         }
     });
 

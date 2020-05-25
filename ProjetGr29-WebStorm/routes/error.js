@@ -5,7 +5,6 @@ var router = express.Router();
 
 router.get('/', function (req, res){
     var tst="Pas d'erreur";
-
     res.render('error', {message:tst});
 
 });

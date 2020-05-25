@@ -115,8 +115,8 @@ router.post('/parent', function (req, res, next) {
 });
 
 //Récupération des entrées dans la table garderie
-//Retourne les entrées //TODO pour la période sélectionnée
-router.get('/garderie', function (req, res, next) { //TODO ajouter des contraintes de date
+//Retourne les entrées
+router.get('/garderie', function (req, res, next) {
     var lundi = req.query.semaine;
     var vendredi = req.query.finSemaine;
     res.locals.connection.query('SELECT idGarderie, garderie.idEleve, nomEleve, prenomEleve, annee, jour, DATE_FORMAT(dateoutin, "%d/%m/%Y") as dateoutin, heure, outIn FROM garderie NATURAL JOIN eleves NATURAL JOIN classes WHERE dateoutin BETWEEN ? AND ? ORDER BY garderie.idEleve ASC, dateoutin ASC, heure ASC', [lundi, vendredi], function (error, results, fields) {

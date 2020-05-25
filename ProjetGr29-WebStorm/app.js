@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
         host     : 'localhost',
         user     : 'ecole',
         password : 'ecole',
-        database : 'ecole' //TODO remettre la base de base
+        database : 'ecole'
     });
     res.locals.connection.connect(function(error){
         if(error){

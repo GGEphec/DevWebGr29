@@ -24,13 +24,12 @@ router.get('/', function(req, res) {
     };
     request(option2, function (err, res2, results){
        json = JSON.parse(results)['response'];
-
+    console.log('s' + results)
         jwt.verify(json, 'secretKey', function(err, decoded){
             if(!err){
                 console.log("no error on token")
-
             } else {
-                res.send('token issue');
+                res.render('error', {message:'Erreur sur le token'});
             }
         })
     });

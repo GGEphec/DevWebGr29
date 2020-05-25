@@ -26,8 +26,8 @@ var app = express();
 app.use(function (req, res, next) {
     res.locals.connection = mysql.createConnection({
         host     : 'localhost',
-        user     : 'ecole',
-        password : 'ecole',
+        user     : 'root',
+        password : '',
         database : 'ecole'
     });
     res.locals.connection.connect(function(error){

@@ -15,7 +15,6 @@ module.exports = function tokenCreate (req, res, next) {
             var token1 = json[0]['token'];
             var token2 = jwt.decode(token1);
             var username = token2.username;
-            console.log(username);
             if (username == 'garderie01') {
                 next();
             } else {
@@ -24,4 +23,4 @@ module.exports = function tokenCreate (req, res, next) {
             }
         }
     })
-}
+};

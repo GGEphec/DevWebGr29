@@ -12,22 +12,23 @@ var json;
 router.get('/', function(req, res) {
 
 
+    //TODO tester de mettre le cryptage mdp ici
+
     var param = querystring.parse(url.parse(req.url).query);
     var username = param.username;
     var password = param.password;
 
-
-    //TODO Verifier la recevabilité du username et password
     const option2 = {
         url: 'http://localhost:3000/api/v1/token?username='+username+'&password='+password,
         method: 'GET'
     };
     request(option2, function (err, res2, results){
+
+
        json = JSON.parse(results)['response'];
 
         jwt.verify(json, 'secretKey', function(err, decoded){
             if(!err){
-                console.log("no error on token")
 
             } else {
                 res.send('token issue');
@@ -40,8 +41,6 @@ router.get('/', function(req, res) {
         method: 'GET'
     };
     request(option, function (err, res2, results) {
-
-        console.log("users "+results);
         var json = JSON.parse(results)['response'];
         if (json.length > 0) {
 

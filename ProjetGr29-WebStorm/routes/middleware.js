@@ -12,11 +12,9 @@ module.exports = function tokenCreate (req, res, next) {
     request(optionMiddle, function (err, res2, results) {
         var json = JSON.parse(results)['response'];
         if(json[0] != null) {
-            console.log(results)
             var token1 = json[0]['token'];
-            var token2 = jwt.decode(token1)
+            var token2 = jwt.decode(token1);
             var username = token2.username;
-            console.log(username)
             if (username == 'secretariat01') {
                 next();
             } else if (username == 'secretariat02') {
@@ -30,4 +28,4 @@ module.exports = function tokenCreate (req, res, next) {
             }
         }
     })
-}
+};

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  Dim 26 avr. 2020 à 22:02
+-- Généré le :  lun. 25 mai 2020 à 20:56
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.3.12
 
@@ -81,13 +81,12 @@ INSERT INTO `eleves` (`idEleve`, `nomEleve`, `prenomEleve`, `naissance`, `nation
 (4, 'Greve', 'Daniel', '2010-08-19', 'BELGIUM', 4, 7, 8),
 (5, 'Greve', 'Tom', '2008-07-15', 'BELGIUM', 5, 7, 8),
 (6, 'Tombor', 'Soraya', '2008-01-02', 'BELGIUM', 6, 9, 10),
-(7, 'Baudin', 'Arthur', '2007-02-22', 'BELGIUM', 7, 11, 12),
+(7, 'Baudin', 'Arthur', '2008-02-22', 'BELGIUM', 7, 11, 12),
 (8, 'Carl', 'Emilie', '2007-05-15', 'BELGIUM', 8, 13, 14),
 (9, 'Latte', 'Ali', '2009-10-10', 'BELGIUM', 9, 15, 16),
 (10, 'Yilmaz', 'Itsvan', '2009-04-17', 'BELGIUM', 10, 17, 18),
 (11, 'Van de Vele', 'Yannis', '2007-12-03', 'BELGIUM', 11, 19, 20),
-(12, 'Delporte', 'Raphael', '2004-10-18', 'BELGIUM', 3, 10, 3),
-(16, 'Mendez', 'Eve', '2015-04-26', 'BELGIUM', 3, 0, 0);
+(12, 'Delporte', 'Raphael', '2004-10-18', 'BELGIUM', 3, 10, 3);
 
 -- --------------------------------------------------------
 
@@ -100,38 +99,38 @@ CREATE TABLE `garderie` (
   `idEleve` int(11) NOT NULL COMMENT 'L''id de l''élève arrivant/repartant',
   `dateoutin` date NOT NULL COMMENT 'La date de la transaction',
   `heure` time NOT NULL COMMENT 'L''heure de la transaction',
-  `outin` varchar(3) NOT NULL COMMENT 'Si l''elève est arrivé/partit'
+  `outin` varchar(3) NOT NULL COMMENT 'Si l''elève est arrivé/partit',
+  `jour` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `garderie`
 --
 
-INSERT INTO `garderie` (`idGarderie`, `idEleve`, `dateoutin`, `heure`, `outin`) VALUES
-(1, 1, '2020-02-11', '07:35:00', 'in'),
-(2, 1, '2020-02-11', '17:40:00', 'out'),
-(3, 11, '2020-02-11', '16:06:00', 'out'),
-(4, 7, '2020-02-11', '07:35:00', 'in'),
-(5, 5, '2020-02-11', '07:35:00', 'out'),
-(6, 2, '2020-02-11', '06:55:00', 'in'),
-(7, 9, '2020-02-11', '07:26:00', 'in'),
-(8, 10, '2020-02-11', '07:59:00', 'in'),
-(9, 4, '2020-02-11', '07:54:00', 'in'),
-(10, 5, '2020-02-11', '07:54:00', 'in'),
-(11, 1, '2020-02-12', '07:35:00', 'in'),
-(12, 2, '2020-02-12', '07:40:00', 'in'),
-(13, 3, '2020-02-12', '07:45:00', 'in'),
-(14, 2, '2020-02-12', '16:35:00', 'out'),
-(15, 2, '2020-02-12', '17:35:00', 'out'),
-(16, 1, '2020-02-12', '16:35:00', 'out'),
-(17, 6, '2020-04-26', '19:29:00', 'In'),
-(18, 5, '2020-04-26', '19:29:00', 'In'),
-(19, 10, '2020-04-26', '19:33:00', 'Out'),
-(20, 10, '2020-04-26', '19:34:00', 'Out'),
-(21, 8, '2020-04-26', '21:46:00', 'In'),
-(22, 4, '2020-04-26', '21:46:00', 'In'),
-(23, 10, '2020-04-26', '21:46:00', 'Out');
-
+INSERT INTO `garderie` (`idGarderie`, `idEleve`, `dateoutin`, `heure`, `outin`, `jour`) VALUES
+(1, 1, '2020-02-11', '07:35:00', 'In', 2),
+(2, 1, '2020-02-11', '17:40:00', 'Out', 2),
+(3, 11, '2020-02-11', '16:06:00', 'Out', 2),
+(4, 7, '2020-02-11', '07:35:00', 'In', 2),
+(5, 5, '2020-02-11', '07:35:00', 'Out', 2),
+(6, 2, '2020-02-11', '06:55:00', 'In', 2),
+(7, 9, '2020-02-11', '07:26:00', 'In', 2),
+(8, 10, '2020-02-11', '07:59:00', 'In', 2),
+(9, 4, '2020-02-11', '07:54:00', 'In', 2),
+(10, 5, '2020-02-11', '07:54:00', 'In', 2),
+(11, 1, '2020-02-12', '07:35:00', 'In', 3),
+(12, 2, '2020-02-12', '07:40:00', 'In', 3),
+(13, 3, '2020-02-12', '07:45:00', 'In', 3),
+(14, 2, '2020-02-12', '16:35:00', 'Out', 3),
+(15, 2, '2020-02-12', '17:35:00', 'Out', 3),
+(16, 1, '2020-02-12', '16:35:00', 'Out', 3),
+(17, 6, '2020-04-27', '19:29:00', 'In', 1),
+(18, 5, '2020-04-27', '19:29:00', 'In', 1),
+(19, 10, '2020-04-27', '19:33:00', 'Out', 1),
+(20, 10, '2020-04-27', '19:34:00', 'Out', 1),
+(21, 8, '2020-04-27', '21:46:00', 'In', 1),
+(22, 4, '2020-04-27', '21:46:00', 'In', 1),
+(23, 10, '2020-04-27', '21:46:00', 'Out', 1);
 -- --------------------------------------------------------
 
 --
@@ -155,15 +154,15 @@ CREATE TABLE `parents` (
 INSERT INTO `parents` (`idParent`, `nomParent`, `prenomParent`, `adresse`, `telephonne`, `GSM`, `email`) VALUES
 (0, '', '', '', '', '', ''),
 (1, 'Colur', 'Michael', 'Rue du port 8 7804 Ath', '068335225', '0478252400', 'm.colur@yopmail.com'),
-(2, 'Dekon', 'Patricia', 'Rue du port 8 7804 Ath', '068335225', '0456241230', 'p.dekon@yopmail.com'),
-(3, 'Delporte', 'Pierre', 'Chaussée de Bruneault 26 7800 Ath', '068245621', '0475262626', 'pierre.delporte@yopmail.com'),
+(2, 'Dekon', 'Patricia', 'Rue du port 8 7804 Ath', '068335226', '0456241230', 'p.dekon@yopmail.com'),
+(3, 'Delporte', 'Pierre', 'Chaussée de Bruneault 26 7800 Ath', '068245622', '0475262626', 'pierre.delporte@yopmail.com'),
 (4, 'Laplace', 'Emilie', 'Chaussée de Bruneault 26 7800 Ath', '068245621', '0489561515', 'emi22laplace@yopmail.com'),
 (5, 'Grany', 'Jacques', 'Impasse verte 3 7812 Houtaing', '068549878', '0478141625', 'j.grany@yopmail.com'),
 (6, 'Oriban', 'Annie', 'Chaussée de Bruxelles 25 7800 Ath', '068529471', '0478785612', 'annie.oriban@yopmail.com'),
 (7, 'Greve', 'Olivier', 'Route d\'Hacquegnies 10\r\n7911 Frasnes-lez-Anvaing', '069178631', '0478564132', 'o.greve@yopmail.com'),
-(8, 'Ovide', 'Marie', 'Route d\'Hacquegnies 10\r\n7911 Frasnes-lez-Anvaing', '069178631', '0476815462', 'marieovide@yopmail.com'),
+(8, 'Ovide', 'Marie', 'Route d\'Hacquegnies 107911 Frasnes-lez-Anvaing', '069178632', '0476815464', 'marieovide@yopmail.com'),
 (9, 'Tombor', 'Victor', 'Rue du 7 juillet 24 7804 Rebaix', '068794556', '0477451532', 'v.tombor@yopmail.com'),
-(10, 'Paul', 'Annae', 'Rue du 7 juillet 24 7804 Rebaix', '068794556', '0477154859', 'a.paul@yopmail.com'),
+(10, 'Paul', 'Annae', 'Rue du 7 juillet 24 7804 Rebaix', '068794557', '0477154859', 'a.paul@yopmail.com'),
 (11, 'Baudin', 'Michael', 'Chemin des Crolites 47 7800 Ath', '', '0478254948', 'm.baudin@yopmail.com'),
 (12, 'Druar', 'Pauline', 'Chemin des Crolites 47 7800 Ath', '', '0475124589', 'p.druar@yopmail.com'),
 (13, 'Carl', 'Sacha', 'Rue du Trieu Périlleux 29 7810 Ath', '068741245', '0478154923', 's.carl@yopmail.com'),
@@ -173,7 +172,19 @@ INSERT INTO `parents` (`idParent`, `nomParent`, `prenomParent`, `adresse`, `tele
 (17, 'Yilmaz', 'Maxence', 'Place de Villers-Notre-Dame 20 7812 Ath', '068473214', '0471598746', 'm.yilmaz@yopmail.com'),
 (18, 'Perez', 'Katty', 'Place de Villers-Notre-Dame 20 7812 Ath', '068473214', '0471587648', 'kattyperez@yopmail.com'),
 (19, 'Van de Vele', 'Dorian', 'Rue de Moulbaix 4 7903 Leuze-en-Hainaut', '068714987', '0472654897', 'd.vandevele@yopmail.com'),
-(20, 'Slager', 'Christine', 'Rue de Moulbaix 4 7903 Leuze-en-Hainaut', '068714987', '0478214598', 'c.slager@yopmail.com');
+(20, 'Slager', 'Christine', 'Rue de Moulbaix 4 7903 Leuze-en-Hainaut', '068714987', '0478214598', 'c.slager@yopmail.com'),
+(23, 'Balori', 'Jean-Michel', 'Rue du tilleul 42, 7803 Lessines', '068335222', '0477688810', 'jm.balori@yopmail.com'),
+(25, 'Balori', 'Jean-Michel', 'Rue du tilleul 42, 7803 Lessines', '068335222', '0477688809', 'jm.balori@yopmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `token`
+--
+
+CREATE TABLE `token` (
+  `token` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -242,7 +253,7 @@ ALTER TABLE `parents`
 -- AUTO_INCREMENT pour la table `eleves`
 --
 ALTER TABLE `eleves`
-  MODIFY `idEleve` int(11) NOT NULL AUTO_INCREMENT COMMENT 'L''id de l''élève', AUTO_INCREMENT=17;
+  MODIFY `idEleve` int(11) NOT NULL AUTO_INCREMENT COMMENT 'L''id de l''élève', AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `garderie`
@@ -254,7 +265,7 @@ ALTER TABLE `garderie`
 -- AUTO_INCREMENT pour la table `parents`
 --
 ALTER TABLE `parents`
-  MODIFY `idParent` int(11) NOT NULL AUTO_INCREMENT COMMENT 'L''id du parent', AUTO_INCREMENT=23;
+  MODIFY `idParent` int(11) NOT NULL AUTO_INCREMENT COMMENT 'L''id du parent', AUTO_INCREMENT=26;
 
 --
 -- Contraintes pour les tables déchargées

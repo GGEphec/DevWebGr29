@@ -26,7 +26,7 @@ var app = express();
 app.use(function (req, res, next) {
     res.locals.connection = mysql.createConnection({
         host     : 'localhost',
-        user     : 'ecole',
+        user     : 'ecoleV2', //TODO changer le nom user ecoleV2 ou ecole
         password : 'ecole',
         database : 'ecole'
     });

@@ -1,6 +1,8 @@
 //Code permettant de gérer l'API
 
 var express = require('express');
+var crypto = require('crypto');
+//var hash = crypto.createHash('md5');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
 
@@ -10,6 +12,9 @@ const jwt = require('jsonwebtoken');
 router.get('/login', function(req,res,next){
     var username = req.query.username;
     var password = req.query.password;
+
+    //var passwordHashe = hash.update(password).digest('hex');
+    //console.log(passwordHashe.digest('hex'));
 
     if (username && password) {
 
@@ -24,6 +29,8 @@ router.get('/login', function(req,res,next){
         });
     }
 });
+
+
 router.get('/middle',function (req,res,next) {
         res.locals.connection.query('SELECT * FROM token', function (error, results, fields) {
             if (error != null) {
@@ -33,7 +40,8 @@ router.get('/middle',function (req,res,next) {
             }
         });
 
-})
+});
+
 
 router.get('/token',function (req,res,next) {
     var username = req.query.username;
@@ -50,7 +58,8 @@ router.get('/token',function (req,res,next) {
         });
     })
 
-})
+});
+
 
 //Récupération du/des élève(s) selon un ou plusieurs critères
 //Retourne la liste du/des élève(s)

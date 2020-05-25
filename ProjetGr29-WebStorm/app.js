@@ -26,13 +26,19 @@ var app = express();
 app.use(function (req, res, next) {
     res.locals.connection = mysql.createConnection({
         host     : 'localhost',
-        user     : 'root',
-        password : '',
-        database : 'ecole' //TODO remettre la base de base
+        user     : 'ecole',
+        password : 'ecole',
+        database : 'ecole'
     });
-    res.locals.connection.connect();
-    next();
-
+    res.locals.connection.connect(function(error){
+        if(error){
+            res.render('error', {message:"Impossible de se connecter à la base de données"});
+        }
+        else {
+            //res.locals.connection.connect();
+            next();
+        }
+    });
 });
 
 // view engine setup

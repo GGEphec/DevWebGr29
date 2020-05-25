@@ -17,5 +17,10 @@
     "mysql": "^2.18.1",
     "pug": "2.0.0-beta11",
     "vue": "^2.6.11"
-  }
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

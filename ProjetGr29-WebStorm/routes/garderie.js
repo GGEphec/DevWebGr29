@@ -25,8 +25,8 @@ function temps() {
     }
     var year = currentDate.getFullYear();
     dateChar = year + "-" + month + "-" + day;
-    semaineCharDebut = year+ "-" + month + "-" + (day-currentDate.getDay());
-    semaineCharFin = year+ "-" + month + "-" + (day-currentDate.getDay()+4);
+    semaineCharDebut = year+ "-" + month + "-" + (day-currentDate.getDay()+1);
+    semaineCharFin = year+ "-" + month + "-" + (day-currentDate.getDay()+5);
 
     var heure = currentDate.getHours();
     if (heure < 10) {
@@ -51,8 +51,15 @@ router.get('/', function(req, res){
         var jourSemaine = jourDemande.getDate();
         var yearSemaine = jourDemande.getFullYear();
         var monthSemaine = jourDemande.getMonth()+1;
-        semaineAfficheeDebut = yearSemaine + '-' + monthSemaine + '-' + (jourSemaine-jourDemande.getDay());
-        semaineAfficheeFin = yearSemaine + '-' + monthSemaine + '-' + (jourSemaine-jourDemande.getDay()+4);
+        var jourSemaineCorrige = (jourSemaine-jourDemande.getDay()+1);
+        if(monthSemaine<10){
+            monthSemaine="0"+monthSemaine;
+        }
+        if(jourSemaineCorrige<10){
+            jourSemaineCorrige="0"+jourSemaineCorrige;
+        }
+        semaineAfficheeDebut = yearSemaine + '-' + monthSemaine + '-' + jourSemaineCorrige;
+        semaineAfficheeFin = yearSemaine + '-' + monthSemaine + '-' + (jourSemaine-jourDemande.getDay()+5);
 
     }
     else{
@@ -157,7 +164,7 @@ router.get('/', function(req, res){
                 currentGarderie++;      //Incrémente l'idGarderie pour parcourir le tableau qu'on envoit
             }
         }
-        res.render('garderie', {garderieTableau:garderie, dateActuelle:dateChar, heureActuelle:heureChar, listeNoms:eleves});
+        res.render('garderie', {garderieTableau:garderie, dateActuelle:dateChar, heureActuelle:heureChar, listeNoms:eleves, semaineAfficheeDebut:semaineAfficheeDebut});
     });
 });
 

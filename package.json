@@ -1,23 +1,27 @@
 {
-  "name": "devwebgr29",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "projetgr29-webstorm",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./ProjetGr29-WebStorm/bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Gaelol/DevWebGr29.git"
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-session": "^1.17.0",
+    "http-errors": "~1.6.3",
+    "jsdom": "^16.2.1",
+    "login": "^0.8.0",
+    "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "pug": "2.0.0-beta11",
+    "vue": "^2.6.11"
   },
+  "main": "app.js",
+  "devDependencies": {},
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Gaelol/DevWebGr29/issues"
-  },
-  "homepage": "https://github.com/Gaelol/DevWebGr29#readme",
-  "dependencies": {
-    "express-jwt-middleware": "^1.0.3",
-    "jsonwebtoken": "^8.5.1"
-  }
+  "description": ""
 }
+

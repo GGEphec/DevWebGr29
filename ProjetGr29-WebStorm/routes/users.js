@@ -7,19 +7,20 @@ var url = require('url');
 var request = require('request');
 var querystring = require('querystring');
 const jwt = require("jsonwebtoken");
+var CryptoJS = require("crypto-js");
 var json;
 
+
 router.get('/', function(req, res) {
-
-
-    //TODO tester de mettre le cryptage mdp ici
 
     var param = querystring.parse(url.parse(req.url).query);
     var username = param.username;
     var password = param.password;
 
+    var mdpHash = CryptoJS.SHA3(password, { outputLength: 256 })['words'][0];
+
     const option2 = {
-        url: 'http://localhost:3000/api/v1/token?username='+username+'&password='+password,
+        url: 'http://localhost:3000/api/v1/token?username='+username+'&password='+mdpHash,
         method: 'GET'
     };
     request(option2, function (err, res2, results){
@@ -37,7 +38,7 @@ router.get('/', function(req, res) {
     });
 
     const option = {
-        url: 'http://localhost:3000/api/v1/login?username='+username+'&password='+password,
+        url: 'http://localhost:3000/api/v1/login?username='+username+'&password='+mdpHash,
         method: 'GET'
     };
     request(option, function (err, res2, results) {

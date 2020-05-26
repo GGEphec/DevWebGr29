@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  lun. 25 mai 2020 à 20:56
--- Version du serveur :  10.4.10-MariaDB
--- Version de PHP :  7.3.12
+-- Généré le : mar. 26 mai 2020 à 21:59
+-- Version du serveur :  10.4.11-MariaDB
+-- Version de PHP : 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `ecole`
+-- Base de données : `ecole`
 --
 
 -- --------------------------------------------------------
@@ -131,6 +130,7 @@ INSERT INTO `garderie` (`idGarderie`, `idEleve`, `dateoutin`, `heure`, `outin`, 
 (21, 8, '2020-04-27', '21:46:00', 'In', 1),
 (22, 4, '2020-04-27', '21:46:00', 'In', 1),
 (23, 10, '2020-04-27', '21:46:00', 'Out', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -186,6 +186,13 @@ CREATE TABLE `token` (
   `token` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `token`
+--
+
+INSERT INTO `token` (`token`) VALUES
+('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzd29yZCI6IjE2ODEwMzc2MDYiLCJ1c2VybmFtZSI6InNlY3JldGFyaWF0MDEiLCJpYXQiOjE1OTA1MjI5MzEsImV4cCI6MTU5MDUyMzA1MX0.Y_9YFlAho03o9-R89SBJrRvG39aJN0OgS1k_NZzHD4s');
+
 -- --------------------------------------------------------
 
 --
@@ -208,10 +215,10 @@ CREATE TABLE `utilisateurs` (
 
 INSERT INTO `utilisateurs` (`idUtilisateur`, `login`, `motDePasse`, `nomUtilisateur`, `prenomUtilisateur`, `role`, `droits`) VALUES
 (0, 'root', 'toor', 'root', 'root', 'Administrateur', 0),
-(1, 'dir01', 'dir01', 'Leleux', 'Sylvie', 'Directrice', 1),
-(2, 'secretariat01', 'secretariat', 'Mandosa', 'Lucas', 'Secrétaire', 2),
-(3, 'secretariat02', 'secretariat', 'Mendez', 'Charlotte', 'Secrétaire', 2),
-(4, 'garderie01', 'garderie', 'Perez', 'Martine', 'Garderie', 3);
+(1, 'dir01', '-183658400', 'Leleux', 'Sylvie', 'Directrice', 1),
+(2, 'secretariat01', '1981680038', 'Mandosa', 'Lucas', 'Secrétaire', 2),
+(3, 'secretariat02', '1981680038', 'Mendez', 'Charlotte', 'Secrétaire', 2),
+(4, 'garderie01', '-1173500352', 'Perez', 'Martine', 'Garderie', 3);
 
 --
 -- Index pour les tables déchargées
@@ -244,6 +251,12 @@ ALTER TABLE `garderie`
 --
 ALTER TABLE `parents`
   ADD PRIMARY KEY (`idParent`);
+
+--
+-- Index pour la table `utilisateurs`
+--
+ALTER TABLE `utilisateurs`
+  ADD PRIMARY KEY (`idUtilisateur`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées

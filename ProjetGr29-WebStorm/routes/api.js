@@ -1,8 +1,6 @@
 //Code permettant de gérer l'API
 
 var express = require('express');
-var crypto = require('crypto');
-//var hash = crypto.createHash('md5');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
 
@@ -13,11 +11,8 @@ router.get('/login', function(req,res,next){
     var username = req.query.username;
     var password = req.query.password;
 
-    //var passwordHashe = hash.update(password).digest('hex');
-    //console.log(passwordHashe.digest('hex'));
-
     if (username && password) {
-
+    console.log('API login');
         res.locals.connection.query('SELECT * FROM utilisateurs WHERE login = ? and motDePasse = ?', [username,password], function(error, results, fields) {
             if (error!=null) {
                 res.redirect(529, '/error');
@@ -122,7 +117,8 @@ router.post('/eleve', function (req, res, next) {
             }
             else {
                 console.log('Eleve modifié');
-                res.redirect(req.headers.referer); //TODO changer la redirection
+                //res.redirect(req.headers.referer); //TODO changer la redirection
+                res.status(200).redirect(req.headers.referer);
             }
         });
     }

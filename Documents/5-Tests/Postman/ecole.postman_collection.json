@@ -7,17 +7,85 @@
 	"item": [
 		{
 			"name": "GET login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2485c397-dc28-414f-a3fc-5f7c33c7f2e9",
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('{\"status\":200,\"error\":null,\"response\":[{\"idUtilisateur\":4,\"login\":\"garderie01\",\"motDePasse\":\"-1173500352\",\"nomUtilisateur\":\"Perez\",\"prenomUtilisateur\":\"Martine\",\"role\":\"Garderie\",\"droits\":3}]}');\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3000/api/v1/login?username=garderie01&password=-1173500352",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "garderie01"
+						},
+						{
+							"key": "password",
+							"value": "-1173500352"
+						}
+					]
 				}
 			},
 			"response": []
 		},
 		{
 			"name": "GET eleve",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "acf39dad-eae8-4896-9c7f-f1a38dbe1265",
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('{\"idEleve\":5,\"nomEleve\":\"Greve\",\"prenomEleve\":\"Tom\",\"naissance\":\"2008-07-15\",\"nationalite\":\"BELGIUM\",\"idClasse\":5,\"annee\":\"Troisième A\",\"parent1Id\":7,\"parent2Id\":8}');\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -39,6 +107,30 @@
 		},
 		{
 			"name": "GET eleve by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1355d2ae-46f0-4af7-b58c-b173906f55a3",
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('{\"status\":200,\"error\":null,\"response\":[{\"idEleve\":3,\"nomEleve\":\"Grany\",\"prenomEleve\":\"Talia\",\"naissance\":\"2010-02-08\",\"nationalite\":\"BELGIUM\",\"idClasse\":3,\"annee\":\"Deuxième A\",\"parent1Id\":5,\"parent2Id\":6}]}');\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -66,11 +158,126 @@
 		},
 		{
 			"name": "GET parents by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "133fb52c-412c-4c39-92d6-d486f60c2598",
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('[{\"idParent\":3,\"nomParent\":\"Delporte\",\"prenomParent\":\"Pierre\",\"adresse\":\"Chaussée de Bruneault 26 7800 Ath\",\"telephonne\":\"068245622\",\"GSM\":\"0475262626\",\"email\":\"pierre.delporte@yopmail.com\"}]');\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3000/api/v1/parents?id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"parents"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET garderie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f67f343d-d505-4da2-a594-4c20b561b2e7",
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('{\"idGarderie\":8,\"idEleve\":10,\"nomEleve\":\"Yilmaz\",\"prenomEleve\":\"Itsvan\",\"annee\":\"Cinquième B\",\"jour\":2,\"dateoutin\":\"11/02/2020\",\"heure\":\"07:59:00\",\"outIn\":\"In\"}');\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "semaine",
+							"value": "2020-02-01",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "finSemaine",
+							"value": "2020-02-08",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/garderie?semaine=2020-02-10&finSemaine=2020-02-14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"garderie"
+					],
+					"query": [
+						{
+							"key": "semaine",
+							"value": "2020-02-10"
+						},
+						{
+							"key": "finSemaine",
+							"value": "2020-02-14"
+						}
+					]
 				}
 			},
 			"response": []
@@ -335,17 +542,6 @@
 						"v1",
 						"parent"
 					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET garderie",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
 				}
 			},
 			"response": []

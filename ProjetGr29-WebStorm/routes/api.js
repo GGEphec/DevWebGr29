@@ -48,7 +48,7 @@ router.get('/token',function (req,res,next) {
             } else {
                 exports.tokn = tokn;
                 res.send({"status": 200, "error": null, "response": tokn})
-                res.locals.connection.query('INSERT INTO Token(token) Values (?)', [tokn])
+                res.locals.connection.query('INSERT INTO token(token) Values (?)', [tokn])
             }
         });
     })

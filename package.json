@@ -18,6 +18,6 @@
   "homepage": "https://github.com/Gaelol/DevWebGr29#readme",
   "dependencies": {
     "express-jwt-middleware": "^1.0.3",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^9.0.0"
   }
 }
